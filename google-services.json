@@ -1,0 +1,40 @@
+{
+  "project_info": {
+    "project_number": "284201418429",
+    "firebase_url": "https://finger-rules.firebaseio.com",
+    "project_id": "finger-rules",
+    "storage_bucket": "finger-rules.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:284201418429:android:f156fbb8d2075ed24d01d4",
+        "android_client_info": {
+          "package_name": "digital.dian.fingerrules"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "284201418429-8blbk5t5fj75ivlo0s59p5r5hdqufgi4.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyAXtmOdw7aQRqxRD12c183RzlQl-NH8Qic"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "284201418429-8blbk5t5fj75ivlo0s59p5r5hdqufgi4.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
