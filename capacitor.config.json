@@ -1,6 +1,6 @@
 {
-  "appId": "io.ionic.starter",
-  "appName": "finger-rules-ionic",
+  "appId": "digital.dian.fingerrules",
+  "appName": "Finger Rules",
   "bundledWebRuntime": false,
   "npmClient": "npm",
   "webDir": "www",

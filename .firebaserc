@@ -1,5 +1,14 @@
 {
   "projects": {
     "default": "finger-rules"
+  },
+  "targets": {
+    "finger-rules": {
+      "hosting": {
+        "app": [
+          "finger-rules"
+        ]
+      }
+    }
   }
 }
