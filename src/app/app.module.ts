@@ -14,6 +14,8 @@ import { AngularFireModule } from '@angular/fire';
 import { AngularFireAnalyticsModule, ScreenTrackingService } from '@angular/fire/analytics';
 import { AngularFireDatabaseModule } from '@angular/fire/database';
 
+import { FlexLayoutModule } from '@angular/flex-layout';
+
 @NgModule({
   declarations: [AppComponent],
   entryComponents: [],
@@ -22,7 +24,8 @@ import { AngularFireDatabaseModule } from '@angular/fire/database';
     AppRoutingModule,
     AngularFireModule.initializeApp(environment.firebase),
     AngularFireAnalyticsModule,
-    AngularFireDatabaseModule
+    AngularFireDatabaseModule,
+    FlexLayoutModule
   ],
   providers: [
     StatusBar,
