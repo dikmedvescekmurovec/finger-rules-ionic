@@ -54,6 +54,18 @@ export class RuleListComponent implements OnInit {
     );
   }
 
+  generateRule() {
+    this.fingerRules.push(
+      {
+        id: this.fingerRules.length.toString(),
+        type: FingerRuleType.TOO_LONG,
+        message: 'Ali so kumare res samo za vlaganje? Res samo za vlaganje? Guyz?',
+        time: new Date(Date.now() - 120000),
+        username: 'Matevž Skrželj'
+      }
+    )
+  }
+
   ngOnInit() {
   }
 

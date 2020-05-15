@@ -1,4 +1,5 @@
-import { Component, OnInit, Input, Output, EventEmitter } from '@angular/core';
+import { Component, OnInit, Input, Output, EventEmitter, AfterViewInit, OnDestroy } from '@angular/core';
+import { createAnimation } from '@ionic/core';
 
 export interface FingerRule {
   id: string;
@@ -21,7 +22,9 @@ export enum FingerRuleType {
   templateUrl: './finger-rule.component.html',
   styleUrls: ['./finger-rule.component.scss'],
 })
-export class FingerRuleComponent implements OnInit {
+export class FingerRuleComponent implements OnInit, AfterViewInit, OnDestroy {
+
+  constructor() { }
 
   @Input()
   fingerRule: FingerRule;
@@ -30,16 +33,41 @@ export class FingerRuleComponent implements OnInit {
   remove: EventEmitter<string> = new EventEmitter();
   minutesAgo: number;
 
-  constructor() { }
-
   ngOnInit() {
+    console.log('playing animation');
+  }
+
+  ngAfterViewInit() {
+    createAnimation()
+      .addElement(document.querySelector(`#${CSS.escape(this.fingerRule.id)}`))
+      .easing('ease-in-out')
+      .duration(1000)
+      .direction('alternate')
+      .iterations(1)
+      .keyframes([
+        { offset: 0, transform: 'scale(0)', opacity: '0' },
+        { offset: 1, transform: 'scale(1)', opacity: '1' }
+      ]).play();
+  }
+
+  ngOnDestroy() {
+    createAnimation()
+      .addElement(document.querySelector(`#${CSS.escape(this.fingerRule.id)}`))
+      .easing('ease-in-out')
+      .duration(1000)
+      .direction('alternate')
+      .iterations(1)
+      .keyframes([
+        { offset: 0, transform: 'scale(0)', opacity: '0' },
+        { offset: 1, transform: 'scale(1)', opacity: '1' }
+      ]).play();
   }
 
   /**
-   *
+   * Emits remove rule event
    */
   removeRule() {
-    console.log(this.fingerRule, this.fingerRule.id);
+    // console.log(this.fingerRule, this.fingerRule.id);
     this.remove.emit(this.fingerRule.id);
   }
 
