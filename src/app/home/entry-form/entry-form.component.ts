@@ -22,12 +22,13 @@ export class EntryFormComponent implements OnInit {
     private db: DatabaseService
   ) {
     this.entryForm = this.formBuilder.group({
-      name: ['', Validators.required],
+      username: ['', Validators.required],
       meeting: ['', [Validators.required, Validators.minLength(4)]]
     });
   }
 
   ngOnInit() {
+    this.entryForm.patchValue({ username: this.auth.getUsername() });
     this.activatedRoute.queryParamMap.subscribe(
       params => {
         if (params.get('meeting')) {
@@ -55,8 +56,8 @@ export class EntryFormComponent implements OnInit {
    */
   async startMeeting() {
     let meetingID = null;
-    const name = this.entryForm.get('name').value;
-    const uid = this.auth.getUid();
+    const username = this.entryForm.get('username').value;
+    this.auth.setUsername(username);
 
     if (this.doesMeetingExist) {
       meetingID = this.entryForm.get('meeting').value;
@@ -66,7 +67,7 @@ export class EntryFormComponent implements OnInit {
       await this.db.createMeeting(meetingID, meetingName);
     }
 
-    await this.db.joinMeeting(meetingID, name, uid, true);
+    await this.db.joinMeeting(meetingID, true);
 
     this.router.navigate(['meeting', meetingID]);
   }

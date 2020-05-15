@@ -1,5 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { FingerRule, FingerRuleType } from './finger-rule/finger-rule.component';
+import { DatabaseService } from 'src/app/services/database.service';
 
 @Component({
   selector: 'app-rule-list',
@@ -8,45 +9,11 @@ import { FingerRule, FingerRuleType } from './finger-rule/finger-rule.component'
 })
 export class RuleListComponent implements OnInit {
 
-  constructor() { }
+  public isAdmin: boolean;
 
-  fingerRules: FingerRule[] = [
-    {
-      id: '1',
-      type: FingerRuleType.FUNNY_REMARK,
-      message: 'Ali so kumare res samo za vlaganje? Res samo za vlaganje? Guyz?',
-      time: new Date(Date.now() - 60000),
-      username: 'Matevž Skrželj'
-    },
-    {
-      id: '2',
-      type: FingerRuleType.REPLY,
-      message: 'Ali so kumare res samo za vlaganje? Res samo za vlaganje? Guyz?',
-      time: new Date(Date.now() - 120000),
-      username: 'Matevž Skrželj'
-    },
-    {
-      id: '3',
-      type: FingerRuleType.NEW_TOPIC,
-      message: 'Ali so kumare res samo za vlaganje? Res samo za vlaganje? Guyz?',
-      time: new Date(Date.now() - 120000),
-      username: 'Matevž Skrželj'
-    },
-    {
-      id: '4',
-      type: FingerRuleType.TECHNICAL,
-      message: 'Ali so kumare res samo za vlaganje? Res samo za vlaganje? Guyz?',
-      time: new Date(Date.now() - 120000),
-      username: 'Matevž Skrželj'
-    },
-    {
-      id: '5',
-      type: FingerRuleType.TOO_LONG,
-      message: 'Ali so kumare res samo za vlaganje? Res samo za vlaganje? Guyz?',
-      time: new Date(Date.now() - 120000),
-      username: 'Matevž Skrželj'
-    }
-  ]
+  constructor(private db: DatabaseService) { }
+
+  fingerRules: FingerRule[] = [];
 
   removeRule(ruleID) {
     this.fingerRules = this.fingerRules.filter(
@@ -67,6 +34,9 @@ export class RuleListComponent implements OnInit {
   }
 
   ngOnInit() {
+    this.db.getFingerRules().subscribe(rules => this.fingerRules = rules);
+
+    this.db.getIsAdmin().subscribe(isAdmin => this.isAdmin = isAdmin);
   }
 
 }
