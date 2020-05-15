@@ -1,19 +1,22 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, OnDestroy } from '@angular/core';
 import { FingerRule, FingerRuleType } from './finger-rule/finger-rule.component';
 import { DatabaseService } from 'src/app/services/database.service';
+import { Subscription } from 'rxjs';
 
 @Component({
   selector: 'app-rule-list',
   templateUrl: './rule-list.component.html',
   styleUrls: ['./rule-list.component.scss'],
 })
-export class RuleListComponent implements OnInit {
+export class RuleListComponent implements OnInit, OnDestroy {
 
   public isAdmin: boolean;
 
-  constructor(private db: DatabaseService) { }
+  public fingerRules: FingerRule[] = [];
 
-  fingerRules: FingerRule[] = [];
+  private subscriptions: Subscription[] = [];
+
+  constructor(private db: DatabaseService) { }
 
   removeRule(ruleID) {
     this.fingerRules = this.fingerRules.filter(
@@ -35,8 +38,14 @@ export class RuleListComponent implements OnInit {
 
   ngOnInit() {
     this.db.getFingerRules().subscribe(rules => this.fingerRules = rules);
-
     this.db.getIsAdmin().subscribe(isAdmin => this.isAdmin = isAdmin);
+    this.subscriptions.push(
+      this.db.getNewFingerRules().subscribe(snapshot => this.fingerRules.unshift(snapshot.payload.val()))
+    );
+  }
+
+  ngOnDestroy() {
+    this.subscriptions.forEach(subscription => subscription.unsubscribe());
   }
 
 }

@@ -1,9 +1,10 @@
 import { Injectable } from '@angular/core';
-import { AngularFireDatabase } from '@angular/fire/database';
+import { AngularFireDatabase, SnapshotAction } from '@angular/fire/database';
 import { KebabCasePipe } from '../kebab-case.pipe';
 import { take, filter, switchMap, tap } from 'rxjs/operators';
 import { Observable } from 'rxjs';
 import { AuthService } from './auth.service';
+import { FingerRule } from '../meeting/rule-list/finger-rule/finger-rule.component';
 
 @Injectable({
   providedIn: 'root'
@@ -55,8 +56,12 @@ export class DatabaseService {
     });
   }
 
-  public getFingerRules(): Observable<any> {
-    return this.db.list(`meetings/${this.meetingID}/rules`).valueChanges().pipe(take(1));
+  public getFingerRules(): Observable<FingerRule[]> {
+    return this.db.list<FingerRule>(`meetings/${this.meetingID}/rules`).valueChanges().pipe(take(1));
+  }
+
+  public getNewFingerRules(): Observable<SnapshotAction<FingerRule>> {
+    return this.db.list<FingerRule>(`meetings/${this.meetingID}/rules`).stateChanges(['child_added']);
   }
 
 }
