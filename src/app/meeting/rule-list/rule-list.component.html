@@ -1,5 +1,5 @@
 <ion-list>
-  <ng-container *ngFor="let fingerRule of fingerRules" >
-    <app-finger-rule [fingerRule]="fingerRule"></app-finger-rule>
+  <ng-container *ngFor="let fingerRule of fingerRules">
+    <app-finger-rule (remove)="removeRule($event)" [fingerRule]="fingerRule"></app-finger-rule>
   </ng-container>
 </ion-list>

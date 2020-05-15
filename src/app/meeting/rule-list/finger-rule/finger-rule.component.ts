@@ -1,6 +1,7 @@
-import { Component, OnInit, Input } from '@angular/core';
+import { Component, OnInit, Input, Output, EventEmitter } from '@angular/core';
 
 export interface FingerRule {
+  id: string;
   type: FingerRuleType;
   time: Date;
   username: string;
@@ -25,11 +26,21 @@ export class FingerRuleComponent implements OnInit {
   @Input()
   fingerRule: FingerRule;
 
+  @Output()
+  remove: EventEmitter<string> = new EventEmitter();
   minutesAgo: number;
 
   constructor() { }
 
   ngOnInit() {
+  }
+
+  /**
+   *
+   */
+  removeRule() {
+    console.log(this.fingerRule, this.fingerRule.id);
+    this.remove.emit(this.fingerRule.id);
   }
 
   /**
