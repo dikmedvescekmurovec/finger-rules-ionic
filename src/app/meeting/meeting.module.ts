@@ -9,6 +9,8 @@ import { MeetingPageRoutingModule } from './meeting-routing.module';
 import { MeetingPage } from './meeting.page';
 
 import { FlexLayoutModule } from '@angular/flex-layout';
+import { RuleListComponent } from './rule-list/rule-list.component';
+import { FingerRuleComponent } from './rule-list/finger-rule/finger-rule.component';
 
 @NgModule({
   imports: [
@@ -18,6 +20,8 @@ import { FlexLayoutModule } from '@angular/flex-layout';
     MeetingPageRoutingModule,
     FlexLayoutModule
   ],
-  declarations: [MeetingPage]
+  declarations: [MeetingPage,
+    RuleListComponent,
+    FingerRuleComponent]
 })
 export class MeetingPageModule {}

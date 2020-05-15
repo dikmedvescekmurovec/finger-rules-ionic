@@ -1,0 +1,7 @@
+<ion-item *ngIf="fingerRule">
+
+  <div fxFlex="column">
+    <ion-label>{{fingerRule.type | uppercase}} • {{dateAgo(fingerRule.time)}}</ion-label>
+    <ion-text>{{fingerRule.username}}</ion-text>
+  </div>
+</ion-item>

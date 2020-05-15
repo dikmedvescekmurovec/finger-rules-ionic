@@ -3,6 +3,7 @@
     <div fxLayout="row" fxLayoutAlign="space-between center">
       <ion-back-button defaultHref="start"></ion-back-button>
       <div fxLayout="column">
+        <ion-text>{{meetingName}}</ion-text>
         <ion-text>{{meetingID}}</ion-text>
       </div>
       <ion-button shape="round" fill="clear">
@@ -13,5 +14,5 @@
 </ion-header>
 
 <ion-content>
-
+  <app-rule-list></app-rule-list>
 </ion-content>
