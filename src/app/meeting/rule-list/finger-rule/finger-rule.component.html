@@ -3,7 +3,7 @@
   <div fxFlex="column" class="finger-rule-header">
     <div>
       <ion-text color="primary"><strong>{{fingerRule.type | uppercase}}</strong> •
-        {{dateAgo(fingerRule.time)}}</ion-text>
+        {{humanizedTimestamp}}</ion-text>
     </div>
     <div>
       <ion-text>{{fingerRule.username}}</ion-text>

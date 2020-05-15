@@ -1,10 +1,11 @@
 import { Component, OnInit, Input, Output, EventEmitter, AfterViewInit, OnDestroy } from '@angular/core';
 import { createAnimation } from '@ionic/core';
+import * as moment from 'moment';
 
 export interface FingerRule {
   id: string;
   type: FingerRuleType;
-  time: Date;
+  timestamp: Date;
   username: string;
   message: string;
 }
@@ -29,12 +30,16 @@ export class FingerRuleComponent implements OnInit, AfterViewInit, OnDestroy {
   @Input()
   fingerRule: FingerRule;
 
+  @Input()
+  private isAdmin: boolean;
+
   @Output()
   remove: EventEmitter<string> = new EventEmitter();
-  minutesAgo: number;
+
+  public humanizedTimestamp: string;
 
   ngOnInit() {
-    console.log('playing animation');
+    this.humanizedTimestamp = moment(this.fingerRule.timestamp).fromNow();
   }
 
   ngAfterViewInit() {
@@ -67,42 +72,7 @@ export class FingerRuleComponent implements OnInit, AfterViewInit, OnDestroy {
    * Emits remove rule event
    */
   removeRule() {
-    // console.log(this.fingerRule, this.fingerRule.id);
     this.remove.emit(this.fingerRule.id);
   }
 
-  /**
-   * Formats date to 'minutes ago' type
-   * @param date Date to format
-   */
-  dateAgo(date: any) {
-    if (date) {
-      const seconds = Math.floor((+new Date() - +new Date(date)) / 1000);
-      if (seconds < 29) // less than 30 seconds ago will show as 'Just now'
-        return 'Just now';
-      const intervals = {
-        year: 31536000,
-        month: 2592000,
-        week: 604800,
-        day: 86400,
-        hour: 3600,
-        minute: 60,
-        second: 1
-      };
-      let counter;
-      for (const i in intervals) {
-        if (i) {
-          counter = Math.floor(seconds / intervals[i]);
-          if (counter > 0) {
-            if (counter === 1) {
-              return counter + ' ' + i + ' ago'; // singular (1 day ago)
-            } else {
-              return counter + ' ' + i + 's ago'; // plural (2 days ago)
-            }
-          }
-        }
-      }
-    }
-    return date;
-  }
 }
