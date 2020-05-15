@@ -1,6 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { FormGroup, FormBuilder, Validators } from '@angular/forms';
-import { Router } from '@angular/router';
+import { Router, ActivatedRoute, ParamMap } from '@angular/router';
 
 @Component({
   selector: 'app-entry-form',
@@ -8,17 +8,15 @@ import { Router } from '@angular/router';
   styleUrls: ['./entry-form.component.scss'],
 })
 export class EntryFormComponent implements OnInit {
-
-  public name: string;
-  public meetingName: string;
-  public meetingID: string;
-
   public isEnteringID: boolean;
 
   public entryForm : FormGroup;
 
-  constructor(private formBuilder: FormBuilder,
-    private router:Router) {
+  constructor(
+    private formBuilder: FormBuilder,
+    private router:Router,
+    private activatedRoute: ActivatedRoute
+    ) {
     this.entryForm = this.formBuilder.group({
       name: [''],
       meetingName: [''],
@@ -26,7 +24,20 @@ export class EntryFormComponent implements OnInit {
     });
   }
 
-  ngOnInit() {}
+  ngOnInit() {
+    this.activatedRoute.queryParamMap.subscribe(
+      params => {
+        if(params.get('meetingID')){
+          this.entryForm.patchValue(
+            {
+              meetingID: params.get('meetingID')
+            }
+          );
+          this.isEnteringID = true;
+        }
+      }
+    );
+  }
 
   /**
    * Switches from create a meeting to join with ID view.
