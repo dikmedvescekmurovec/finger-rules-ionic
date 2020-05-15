@@ -1,5 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { FormGroup, FormBuilder, Validators } from '@angular/forms';
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-entry-form',
@@ -16,7 +17,8 @@ export class EntryFormComponent implements OnInit {
 
   public entryForm : FormGroup;
 
-  constructor(private formBuilder: FormBuilder) { 
+  constructor(private formBuilder: FormBuilder,
+    private router:Router) {
     this.entryForm = this.formBuilder.group({
       name: [''],
       meetingName: [''],
@@ -38,6 +40,7 @@ export class EntryFormComponent implements OnInit {
    */
   startMeeting() {
     console.log(this.entryForm.value);
+    this.router.navigateByUrl('meeting/123');
   }
 
 }
