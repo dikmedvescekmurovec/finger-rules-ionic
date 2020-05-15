@@ -1,6 +1,14 @@
 <ion-header>
-  <ion-toolbar>
-    <ion-title>Meeting Name {{meetingID}}</ion-title>
+  <ion-toolbar >
+    <div fxLayout="row" fxLayoutAlign="space-between center">
+      <ion-back-button defaultHref="start"></ion-back-button>
+      <div fxLayout="column">
+        <ion-text>{{meetingID}}</ion-text>
+      </div>
+      <ion-button shape="round" fill="clear">
+        <ion-icon slot="icon-only" name="share-social-outline"></ion-icon>
+      </ion-button>
+    </div>
   </ion-toolbar>
 </ion-header>
 

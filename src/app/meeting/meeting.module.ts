@@ -8,12 +8,15 @@ import { MeetingPageRoutingModule } from './meeting-routing.module';
 
 import { MeetingPage } from './meeting.page';
 
+import { FlexLayoutModule } from '@angular/flex-layout';
+
 @NgModule({
   imports: [
     CommonModule,
     FormsModule,
     IonicModule,
-    MeetingPageRoutingModule
+    MeetingPageRoutingModule,
+    FlexLayoutModule
   ],
   declarations: [MeetingPage]
 })

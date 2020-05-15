@@ -9,6 +9,7 @@ import { ActivatedRoute } from '@angular/router';
 export class MeetingPage implements OnInit {
 
   public meetingID: string;
+  public meetingName: string = 'Test name'; // TODO: Remove test string
 
   constructor(private activatedRoute: ActivatedRoute) { }
 
