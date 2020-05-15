@@ -1,11 +1,12 @@
 import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { IonicModule } from '@ionic/angular';
-import { FormsModule } from '@angular/forms';
+import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { HomePage } from './home.page';
 
 import { HomePageRoutingModule } from './home-routing.module';
 import { FlexLayoutModule } from '@angular/flex-layout';
+import { EntryFormComponent } from './entry-form/entry-form.component';
 
 @NgModule({
   imports: [
@@ -13,8 +14,11 @@ import { FlexLayoutModule } from '@angular/flex-layout';
     FormsModule,
     IonicModule,
     HomePageRoutingModule,
-    FlexLayoutModule
+    FlexLayoutModule,
+    FormsModule, 
+    ReactiveFormsModule
   ],
-  declarations: [HomePage]
+  declarations: [HomePage,
+    EntryFormComponent]
 })
 export class HomePageModule { }
