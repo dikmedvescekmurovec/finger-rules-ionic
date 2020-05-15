@@ -7,6 +7,7 @@ import { AngularFireAuth } from '@angular/fire/auth';
 export class AuthService {
 
   private uid: string;
+  private name: string;
 
   constructor(private auth: AngularFireAuth) {
   }
@@ -18,5 +19,9 @@ export class AuthService {
 
   public getUid(): string {
     return this.uid;
+  }
+
+  public setName(name: string) {
+    this.name = name;
   }
 }

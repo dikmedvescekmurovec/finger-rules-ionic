@@ -3,18 +3,15 @@
     <ion-label position="floating">Name</ion-label>
     <ion-input type="text" formControlName="name"></ion-input>
   </ion-item>
-  <ion-item *ngIf="!isEnteringID">
-    <ion-label position="floating">Meeting Name</ion-label>
-    <ion-input type="text" formControlName="meetingName"></ion-input>
-  </ion-item>
-  <ion-item *ngIf="isEnteringID">
-    <ion-label position="floating">Meeting ID</ion-label>
-    <ion-input type="text" formControlName="meetingID"></ion-input>
+  <ion-item>
+    <ion-label position="floating">Meeting {{ doesMeetingExist ? 'ID' : 'Name' }}</ion-label>
+    <ion-input type="text" formControlName="meeting"></ion-input>
   </ion-item>
   <div class="buttons ion-padding">
-    <ion-button class="ion-margin-top" color="primary" expand="full" type="submit">Start a Meeting</ion-button>
+    <ion-button class="ion-margin-top" color="primary" expand="full" type="submit" [disabled]="entryForm.invalid">Start
+      a Meeting</ion-button>
     <ion-button class="ion-margin-top" color="primary" fill="clear" expand="full" (click)="switchView()">
-      {{isEnteringID ? 'Create a new meeting' : 'Join with Meeting ID'}}
+      {{ !doesMeetingExist ? 'Join with Meeting ID' : 'Create a new meeting'}}
     </ion-button>
   </div>
 </form>
