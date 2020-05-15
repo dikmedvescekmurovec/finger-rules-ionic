@@ -1,7 +1,14 @@
 <ion-item *ngIf="fingerRule">
   <ion-icon src="assets/icon/{{fingerRule.type | kebabCase}}.svg"></ion-icon>
-  <div fxFlex="column">
-    <ion-label>{{fingerRule.type | uppercase}} • {{dateAgo(fingerRule.time)}}</ion-label>
-    <ion-text>{{fingerRule.username}}</ion-text>
+  <div fxFlex="column" class="finger-rule-header">
+    <div>
+      <ion-text color="primary"><strong>{{fingerRule.type | uppercase}}</strong> •
+        {{dateAgo(fingerRule.time)}}</ion-text>
+    </div>
+    <div>
+      <ion-text>{{fingerRule.username}}</ion-text>
+    </div>
   </div>
+  <ion-icon name="close-outline">
+  </ion-icon>
 </ion-item>

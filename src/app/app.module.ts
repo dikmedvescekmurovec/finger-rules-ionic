@@ -16,7 +16,7 @@ import { AngularFireDatabaseModule } from '@angular/fire/database';
 import { KebabCasePipe } from './kebab-case.pipe';
 
 @NgModule({
-  declarations: [AppComponent, KebabCasePipe],
+  declarations: [AppComponent],
   entryComponents: [],
   imports: [
     BrowserModule, IonicModule.forRoot(),
