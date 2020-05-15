@@ -1,5 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-import { FingerRule } from './finger-rule/finger-rule.component';
+import { FingerRule, FingerRuleType } from './finger-rule/finger-rule.component';
 
 @Component({
   selector: 'app-rule-list',
@@ -12,13 +12,31 @@ export class RuleListComponent implements OnInit {
 
   fingerRules: FingerRule[] = [
     {
-      type: 'Reply',
+      type: FingerRuleType.FUNNY_REMARK,
       message: 'Ali so kumare res samo za vlaganje? Res samo za vlaganje? Guyz?',
       time: new Date(Date.now() - 60000),
       username: 'Matevž Skrželj'
     },
     {
-      type: 'Reply',
+      type: FingerRuleType.REPLY,
+      message: 'Ali so kumare res samo za vlaganje? Res samo za vlaganje? Guyz?',
+      time: new Date(Date.now() - 120000),
+      username: 'Matevž Skrželj'
+    },
+    {
+      type: FingerRuleType.NEW_TOPIC,
+      message: 'Ali so kumare res samo za vlaganje? Res samo za vlaganje? Guyz?',
+      time: new Date(Date.now() - 120000),
+      username: 'Matevž Skrželj'
+    },
+    {
+      type: FingerRuleType.TECHNICAL,
+      message: 'Ali so kumare res samo za vlaganje? Res samo za vlaganje? Guyz?',
+      time: new Date(Date.now() - 120000),
+      username: 'Matevž Skrželj'
+    },
+    {
+      type: FingerRuleType.TOO_LONG,
       message: 'Ali so kumare res samo za vlaganje? Res samo za vlaganje? Guyz?',
       time: new Date(Date.now() - 120000),
       username: 'Matevž Skrželj'

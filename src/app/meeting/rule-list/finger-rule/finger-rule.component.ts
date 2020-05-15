@@ -1,10 +1,18 @@
 import { Component, OnInit, Input } from '@angular/core';
 
 export interface FingerRule {
-  type: string;
+  type: FingerRuleType;
   time: Date;
   username: string;
   message: string;
+}
+
+export enum FingerRuleType {
+  REPLY = 'Reply',
+  TOO_LONG = 'Topic Too Long',
+  TECHNICAL = 'Technical Remark',
+  NEW_TOPIC = 'New Topic',
+  FUNNY_REMARK = 'Funny Remark'
 }
 
 @Component({

@@ -11,6 +11,7 @@ import { MeetingPage } from './meeting.page';
 import { FlexLayoutModule } from '@angular/flex-layout';
 import { RuleListComponent } from './rule-list/rule-list.component';
 import { FingerRuleComponent } from './rule-list/finger-rule/finger-rule.component';
+import { KebabCasePipe } from '../kebab-case.pipe';
 
 @NgModule({
   imports: [
@@ -22,6 +23,7 @@ import { FingerRuleComponent } from './rule-list/finger-rule/finger-rule.compone
   ],
   declarations: [MeetingPage,
     RuleListComponent,
-    FingerRuleComponent]
+    FingerRuleComponent,
+    KebabCasePipe]
 })
-export class MeetingPageModule {}
+export class MeetingPageModule { }

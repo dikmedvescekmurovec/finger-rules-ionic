@@ -13,9 +13,10 @@ import { environment } from 'src/environments/environment';
 import { AngularFireModule } from '@angular/fire';
 import { AngularFireAnalyticsModule, ScreenTrackingService } from '@angular/fire/analytics';
 import { AngularFireDatabaseModule } from '@angular/fire/database';
+import { KebabCasePipe } from './kebab-case.pipe';
 
 @NgModule({
-  declarations: [AppComponent],
+  declarations: [AppComponent, KebabCasePipe],
   entryComponents: [],
   imports: [
     BrowserModule, IonicModule.forRoot(),
