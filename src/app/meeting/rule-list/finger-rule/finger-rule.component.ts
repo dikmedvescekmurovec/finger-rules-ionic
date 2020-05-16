@@ -43,29 +43,10 @@ export class FingerRuleComponent implements OnInit, AfterViewInit, OnDestroy {
   }
 
   ngAfterViewInit() {
-    createAnimation()
-      .addElement(document.querySelector(`#${CSS.escape(this.fingerRule.id)}`))
-      .easing('ease-in-out')
-      .duration(1000)
-      .direction('alternate')
-      .iterations(1)
-      .keyframes([
-        { offset: 0, transform: 'scale(0)', opacity: '0' },
-        { offset: 1, transform: 'scale(1)', opacity: '1' }
-      ]).play();
+    setTimeout(() => document.querySelector(`#${CSS.escape(this.fingerRule.id)}`).className += ' fade-in', 10);
   }
 
   ngOnDestroy() {
-    createAnimation()
-      .addElement(document.querySelector(`#${CSS.escape(this.fingerRule.id)}`))
-      .easing('ease-in-out')
-      .duration(1000)
-      .direction('alternate')
-      .iterations(1)
-      .keyframes([
-        { offset: 0, transform: 'scale(0)', opacity: '0' },
-        { offset: 1, transform: 'scale(1)', opacity: '1' }
-      ]).play();
   }
 
   /**

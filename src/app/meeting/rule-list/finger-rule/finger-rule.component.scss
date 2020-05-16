@@ -6,3 +6,11 @@ ion-icon {
   fill: var(--ion-color-primary) !important;
   margin: 0.5rem;
 }
+
+.finger-rule {
+  transition: all 0.4s ease-out;
+  opacity: 0;
+}
+.finger-rule.fade-in {
+  opacity: 1;
+}
