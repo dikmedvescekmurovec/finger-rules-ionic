@@ -12,6 +12,7 @@ import { FlexLayoutModule } from '@angular/flex-layout';
 import { RuleListComponent } from './rule-list/rule-list.component';
 import { FingerRuleComponent } from './rule-list/finger-rule/finger-rule.component';
 import { KebabCasePipe } from '../kebab-case.pipe';
+import { EmptyRuleListComponent } from './rule-list/empty-rule-list/empty-rule-list.component';
 
 @NgModule({
   imports: [
@@ -24,6 +25,7 @@ import { KebabCasePipe } from '../kebab-case.pipe';
   declarations: [MeetingPage,
     RuleListComponent,
     FingerRuleComponent,
-    KebabCasePipe]
+    KebabCasePipe,
+    EmptyRuleListComponent]
 })
 export class MeetingPageModule { }
