@@ -52,7 +52,7 @@ export class EntryFormComponent implements OnInit {
   }
 
   /**
-   * TODO: Creates meeting and redirects to meeting page.
+   * Creates meeting and redirects to meeting page.
    */
   async startMeeting() {
     let meetingID = null;

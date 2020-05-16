@@ -5,9 +5,10 @@ import * as moment from 'moment';
 export interface FingerRule {
   id: string;
   type: FingerRuleType;
-  timestamp: Date;
+  timestamp?: Date;
   username: string;
   message: string;
+  priorityLevel?: string;
 }
 
 export enum FingerRuleType {
@@ -33,13 +34,18 @@ export class FingerRuleComponent implements OnInit, AfterViewInit, OnDestroy {
   @Input()
   private isAdmin: boolean;
 
+  @Input()
+  canDelete = true;
+
   @Output()
   remove: EventEmitter<string> = new EventEmitter();
 
   public humanizedTimestamp: string;
 
   ngOnInit() {
-    this.humanizedTimestamp = moment(this.fingerRule.timestamp).fromNow();
+    if (this.fingerRule.timestamp) {
+      this.humanizedTimestamp = moment(this.fingerRule.timestamp).fromNow();
+    }
   }
 
   ngAfterViewInit() {

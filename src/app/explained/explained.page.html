@@ -1,0 +1,41 @@
+<ion-header>
+  <ion-toolbar>
+    <div fxLayout="row" fxLayoutAlign="start center">
+      <ion-back-button defaultHref="start"></ion-back-button>
+      <ion-text>Finger Rules</ion-text>
+    </div>
+  </ion-toolbar>
+</ion-header>
+
+<ion-content>
+  <div fxLayout="column" class="ion-margin">
+    <ion-text>
+      <h1>Explained</h1>
+    </ion-text>
+    <ion-text color="primary" class="ion-margin-top">Finger rules are used to prevent unnecessary interruptions in
+      meetings. They are
+      automatically sorted by their priority orders so that any questions or replies are handled in a timely manner.
+    </ion-text>
+
+    <div fxFlex="auto" class="ion-margin-top">
+      <ion-list>
+        <ng-container *ngFor="let fingerRule of ruleListExplained">
+          <app-finger-rule [canDelete]="false" [fingerRule]="fingerRule"></app-finger-rule>
+        </ng-container>
+      </ion-list>
+    </div>
+
+    <ion-text class="ion-margin-top">
+      Example: It is important to handle all replies to a current topic first, before moving on to the next. That is why
+      <ion-text color="primary">REPLY</ion-text> has a higher priority than <ion-text color="primary">NEW TOPIC
+      </ion-text>.
+      Similarly a <ion-text color="primary">TECHNICAL REMARK</ion-text> should be handled before any further new topics
+      or replies.
+    </ion-text>
+
+    <div fxFlex="nogrow" class="ion-margin-top">
+      <ion-text>For any further questions and comments:
+        rules@dian-digital.com</ion-text>
+    </div>
+  </div>
+</ion-content>

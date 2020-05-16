@@ -3,12 +3,12 @@
   <div fxFlex="column" class="finger-rule-header">
     <div>
       <ion-text color="primary"><strong>{{fingerRule.type | uppercase}}</strong> •
-        {{humanizedTimestamp}}</ion-text>
+        {{fingerRule.timestamp ? humanizedTimestamp : fingerRule.priorityLevel}}</ion-text>
     </div>
     <div>
       <ion-text>{{fingerRule.username}}</ion-text>
     </div>
   </div>
-  <ion-icon name="close-outline" (click)="removeRule()">
+  <ion-icon *ngIf="canDelete" name="close-outline" (click)="removeRule()">
   </ion-icon>
 </ion-item>
