@@ -8,9 +8,12 @@ ion-icon {
 }
 
 .finger-rule {
-  transition: all 0.4s ease-out;
+  transition: all 0.2s ease-out;
   opacity: 0;
 }
 .finger-rule.fade-in {
   opacity: 1;
+}
+.finger-rule.fade-out {
+  opacity: 0;
 }
