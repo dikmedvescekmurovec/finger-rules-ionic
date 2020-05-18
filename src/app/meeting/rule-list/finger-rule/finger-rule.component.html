@@ -1,9 +1,9 @@
 <ion-item class="finger-rule" *ngIf="fingerRule" [id]="fingerRule.id">
-  <div class="icon-background" [class.flip-vertical-right]="!firstDraw" *ngIf="!isSelected" fxLayoutAlign="center center" fxFlex="0 0 auto"> 
-    <ion-icon  src="assets/icon/{{fingerRule.type | kebabCase}}.svg" (click)="selectRule()"></ion-icon>
+  <div class="icon-background" [class.flip-vertical-right]="!firstDraw" *ngIf="!isSelected" fxLayoutAlign="center center" fxFlex="0 0 auto" (click)="selectRule()"> 
+    <ion-icon  src="assets/icon/{{fingerRule.type | kebabCase}}.svg"></ion-icon>
   </div>
-  <div class="icon-background selected flip-vertical-right" *ngIf="isSelected" fxLayoutAlign="center center" fxFlex="0 0 auto" >
-    <ion-icon  name="checkmark-outline" (click)="deselectRule()"></ion-icon>
+  <div class="icon-background selected flip-vertical-right" *ngIf="isSelected" fxLayoutAlign="center center" fxFlex="0 0 auto" (click)="deselectRule()">
+    <ion-icon  name="checkmark-outline"></ion-icon>
   </div>
 
   <div fxFlex="column" class="finger-rule-header">

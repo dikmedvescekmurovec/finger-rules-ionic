@@ -2,7 +2,7 @@
   <div fxFlex="auto">
     <ion-list *ngIf="fingerRules.length > 0">
       <ng-container *ngFor="let fingerRule of fingerRules">
-        <app-finger-rule (remove)="removeRule($event)" [fingerRule]="fingerRule"></app-finger-rule>
+        <app-finger-rule (deselected)="deselectRule($event)" (selected)="selectRule($event)" (remove)="removeRule($event)" [fingerRule]="fingerRule"></app-finger-rule>
       </ng-container>
     </ion-list>
     <app-empty-rule-list fxFill *ngIf="fingerRules.length === 0"></app-empty-rule-list>

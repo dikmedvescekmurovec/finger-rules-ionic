@@ -71,6 +71,7 @@ export class FingerRuleComponent implements OnInit, AfterViewInit, OnDestroy {
    * Emits remove rule event
    */
   removeRule() {
+    this.deselected.emit(this.fingerRule);
     document.querySelector(`#${CSS.escape(this.fingerRule.id)}`).className += ' fade-out'
     setTimeout(() => this.remove.emit(this.fingerRule.id), 200);
   }

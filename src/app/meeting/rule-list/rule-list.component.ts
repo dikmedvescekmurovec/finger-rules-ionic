@@ -24,6 +24,7 @@ export class RuleListComponent implements OnInit, OnDestroy {
     this.fingerRules = this.fingerRules.filter(
       rule => rule.id !== ruleID
     );
+    this.deselectRule({id: ruleID})
   }
 
   randomType(enumeration) {
@@ -56,7 +57,7 @@ export class RuleListComponent implements OnInit, OnDestroy {
     const randType = this.randomType(FingerRuleType);
     this.pushRule(
       {
-        id: this.fingerRules.length.toString(),
+        id: Math.floor(Math.random()*1000000000).toString(),
         type: randType.type,
         message: this.randomText(),
         timestamp: new Date(Date.now() - 120000),
@@ -83,9 +84,14 @@ export class RuleListComponent implements OnInit, OnDestroy {
     this.subscriptions.forEach(subscription => subscription.unsubscribe());
   }
 
-  priorityComparator(ruleA: FingerRule, ruleB: FingerRule) {
-    if(ruleA.type === FingerRuleType.FUNNY_REMARK) {
-      return 1;
-    }
+  selectRule(rule) {
+    this.selectedRules.push(rule);
+    console.log(this.selectedRules);
+  }
+
+  deselectRule(rule) {
+    console.log(rule.id);
+    this.selectedRules = this.selectedRules.filter(r => rule.id !== r.id);
+    console.log(this.selectedRules);
   }
 }
