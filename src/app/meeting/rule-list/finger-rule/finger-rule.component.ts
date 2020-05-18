@@ -5,7 +5,7 @@ import { SelectedRulesService } from 'src/app/selected-rules.service';
 export interface FingerRule {
   id: string;
   type: FingerRuleType;
-  timestamp?: Date;
+  timestamp?: string;
   username: string;
   message: string;
   priorityLevelDescription?: string;

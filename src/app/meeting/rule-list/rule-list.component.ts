@@ -3,6 +3,7 @@ import { Subscription } from 'rxjs';
 import { SelectedRulesService } from 'src/app/selected-rules.service';
 import { DatabaseService } from 'src/app/services/database.service';
 import { FingerRule, FingerRuleType } from './finger-rule/finger-rule.component';
+import * as moment from 'moment';
 
 @Component({
   selector: 'app-rule-list',
@@ -22,18 +23,15 @@ export class RuleListComponent implements OnInit, OnDestroy {
 
   public selectedRules: FingerRule[] = []
 
-  removeRule(ruleID) {
-    this.fingerRules = this.fingerRules.filter(
-      rule => rule.id !== ruleID
-    );
-    this.selectedRulesService.deselectRule({id: ruleID});
+  removeRule(id: string) {
+    this.db.removeRule(id);
   }
 
   randomType(enumeration) {
     const values = Object.keys(enumeration);
     const index = Math.floor(Math.random() * values.length);
     const enumKey = values[index];
-    return {index, type: enumeration[enumKey]};
+    return { index, type: enumeration[enumKey] };
   }
 
   private randomName() {
@@ -57,16 +55,17 @@ export class RuleListComponent implements OnInit, OnDestroy {
 
   generateRule() {
     const randType = this.randomType(FingerRuleType);
-    this.pushRule(
-      {
-        id: Math.floor(Math.random()*1000000000).toString(),
-        type: randType.type,
-        message: this.randomText(),
-        timestamp: new Date(Date.now() - 120000),
-        username: this.randomName(),
-        priorityLevel: randType.index
-      }
-    )
+    const randRule =
+    {
+      id: moment().valueOf().toString(),
+      type: randType.type,
+      message: this.randomText(),
+      timestamp: moment().toISOString(),
+      username: this.randomName(),
+      priorityLevel: randType.index
+    };
+
+    this.db.addRule(randRule);
   }
 
   pushRule(rule: FingerRule) {
@@ -75,10 +74,9 @@ export class RuleListComponent implements OnInit, OnDestroy {
   }
 
   ngOnInit() {
-    this.db.getFingerRules().subscribe(rules => this.fingerRules = rules);
     this.db.getIsAdmin().subscribe(isAdmin => this.isAdmin = isAdmin);
     this.subscriptions.push(
-      this.db.getNewFingerRules().subscribe(snapshot => this.fingerRules.unshift(snapshot.payload.val()))
+      this.db.getFingerRules().subscribe(rules => this.fingerRules = rules)
     );
   }
 
