@@ -1,4 +1,4 @@
-import { AfterViewInit, Component, EventEmitter, Input, OnDestroy, OnInit, Output } from '@angular/core';
+import { AfterViewInit, Component, ElementRef, EventEmitter, Input, OnDestroy, OnInit, Output, ViewChild } from '@angular/core';
 import * as moment from 'moment';
 
 export interface FingerRule {
@@ -27,6 +27,8 @@ export class FingerRuleComponent implements OnInit, AfterViewInit, OnDestroy {
 
   constructor() { }
 
+  public firstDraw = true;
+
   @Input()
   fingerRule: FingerRule;
 
@@ -34,13 +36,15 @@ export class FingerRuleComponent implements OnInit, AfterViewInit, OnDestroy {
   private isAdmin: boolean;
 
   public isSelected = false;
-  
+
+  @ViewChild('deselected') deselectedRef: ElementRef;
+
   @Output()
   selected: EventEmitter<FingerRule> = new EventEmitter<FingerRule>();
 
   @Output()
   deselected: EventEmitter<FingerRule> = new EventEmitter<FingerRule>();
-  
+
   @Input()
   canDelete = true;
 
@@ -73,6 +77,7 @@ export class FingerRuleComponent implements OnInit, AfterViewInit, OnDestroy {
   selectRule() {
     this.selected.emit(this.fingerRule);
     this.isSelected = true;
+    this.firstDraw = false;
   }
 
   deselectRule() {
