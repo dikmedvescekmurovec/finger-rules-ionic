@@ -1,5 +1,4 @@
-import { Component, OnInit, Input, Output, EventEmitter, AfterViewInit, OnDestroy } from '@angular/core';
-import { createAnimation } from '@ionic/core';
+import { AfterViewInit, Component, EventEmitter, Input, OnDestroy, OnInit, Output } from '@angular/core';
 import * as moment from 'moment';
 
 export interface FingerRule {
@@ -34,6 +33,14 @@ export class FingerRuleComponent implements OnInit, AfterViewInit, OnDestroy {
   @Input()
   private isAdmin: boolean;
 
+  public isSelected = false;
+  
+  @Output()
+  selected: EventEmitter<FingerRule> = new EventEmitter<FingerRule>();
+
+  @Output()
+  deselected: EventEmitter<FingerRule> = new EventEmitter<FingerRule>();
+  
   @Input()
   canDelete = true;
 
@@ -61,6 +68,16 @@ export class FingerRuleComponent implements OnInit, AfterViewInit, OnDestroy {
   removeRule() {
     document.querySelector(`#${CSS.escape(this.fingerRule.id)}`).className += ' fade-out'
     setTimeout(() => this.remove.emit(this.fingerRule.id), 200);
+  }
+
+  selectRule() {
+    this.selected.emit(this.fingerRule);
+    this.isSelected = true;
+  }
+
+  deselectRule() {
+    this.deselected.emit(this.fingerRule);
+    this.isSelected = false;
   }
 
 }

@@ -1,7 +1,7 @@
-import { Component, OnInit, OnDestroy } from '@angular/core';
-import { FingerRule, FingerRuleType } from './finger-rule/finger-rule.component';
-import { DatabaseService } from 'src/app/services/database.service';
+import { Component, OnDestroy, OnInit } from '@angular/core';
 import { Subscription } from 'rxjs';
+import { DatabaseService } from 'src/app/services/database.service';
+import { FingerRule, FingerRuleType } from './finger-rule/finger-rule.component';
 
 @Component({
   selector: 'app-rule-list',
@@ -17,6 +17,8 @@ export class RuleListComponent implements OnInit, OnDestroy {
   private subscriptions: Subscription[] = [];
 
   constructor(private db: DatabaseService) { }
+
+  public selectedRules: FingerRule[] = []
 
   removeRule(ruleID) {
     this.fingerRules = this.fingerRules.filter(
