@@ -21,4 +21,8 @@ export class SelectedRulesService {
     this.selectedRules = this.selectedRules.filter(r => rule.id !== r.id);
     console.log(this.selectedRules);
   }
+
+  isEmpty() {
+    return this.selectedRules.length === 0;
+  }
 }
