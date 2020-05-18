@@ -1,5 +1,6 @@
 import { Component, OnDestroy, OnInit } from '@angular/core';
 import { Subscription } from 'rxjs';
+import { SelectedRulesService } from 'src/app/selected-rules.service';
 import { DatabaseService } from 'src/app/services/database.service';
 import { FingerRule, FingerRuleType } from './finger-rule/finger-rule.component';
 
@@ -16,7 +17,8 @@ export class RuleListComponent implements OnInit, OnDestroy {
 
   private subscriptions: Subscription[] = [];
 
-  constructor(private db: DatabaseService) { }
+  constructor(private db: DatabaseService,
+    private selectedRulesService: SelectedRulesService) { }
 
   public selectedRules: FingerRule[] = []
 
@@ -24,7 +26,7 @@ export class RuleListComponent implements OnInit, OnDestroy {
     this.fingerRules = this.fingerRules.filter(
       rule => rule.id !== ruleID
     );
-    this.deselectRule({id: ruleID})
+    this.selectedRulesService.deselectRule({id: ruleID});
   }
 
   randomType(enumeration) {
@@ -82,16 +84,5 @@ export class RuleListComponent implements OnInit, OnDestroy {
 
   ngOnDestroy() {
     this.subscriptions.forEach(subscription => subscription.unsubscribe());
-  }
-
-  selectRule(rule) {
-    this.selectedRules.push(rule);
-    console.log(this.selectedRules);
-  }
-
-  deselectRule(rule) {
-    console.log(rule.id);
-    this.selectedRules = this.selectedRules.filter(r => rule.id !== r.id);
-    console.log(this.selectedRules);
   }
 }

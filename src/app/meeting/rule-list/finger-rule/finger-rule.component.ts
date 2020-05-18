@@ -1,5 +1,6 @@
 import { AfterViewInit, Component, ElementRef, EventEmitter, Input, OnDestroy, OnInit, Output, ViewChild } from '@angular/core';
 import * as moment from 'moment';
+import { SelectedRulesService } from 'src/app/selected-rules.service';
 
 export interface FingerRule {
   id: string;
@@ -26,7 +27,7 @@ export enum FingerRuleType {
 })
 export class FingerRuleComponent implements OnInit, AfterViewInit, OnDestroy {
 
-  constructor() { }
+  constructor(private selectedRulesService: SelectedRulesService) { }
 
   public firstDraw = true;
 
@@ -77,13 +78,13 @@ export class FingerRuleComponent implements OnInit, AfterViewInit, OnDestroy {
   }
 
   selectRule() {
-    this.selected.emit(this.fingerRule);
+    this.selectedRulesService.selectRule(this.fingerRule)
     this.isSelected = true;
     this.firstDraw = false;
   }
 
   deselectRule() {
-    this.deselected.emit(this.fingerRule);
+    this.selectedRulesService.deselectRule(this.fingerRule)
     this.isSelected = false;
   }
 
