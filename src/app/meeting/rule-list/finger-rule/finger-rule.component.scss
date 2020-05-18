@@ -14,7 +14,9 @@ ion-icon {
 }
 .finger-rule.fade-in {
   opacity: 1;
-  transform: scale(1, 1);
+}
+.finger-rule.fade-out {
+  opacity: 0;
 }
 
 .icon-background {
