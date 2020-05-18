@@ -1,5 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-import { FingerRuleType, FingerRule } from '../meeting/rule-list/finger-rule/finger-rule.component';
+import { FingerRule, FingerRuleType } from '../meeting/rule-list/finger-rule/finger-rule.component';
 
 @Component({
   selector: 'app-explained',
@@ -14,37 +14,42 @@ export class ExplainedPage implements OnInit {
     {
       id: 'new-topic',
       type: FingerRuleType.NEW_TOPIC,
-      priorityLevel: 'Lowest Priority',
+      priorityLevelDescription: 'Lowest Priority',
       username: 'You have a new topic you want to discuss.',
-      message: ''
+      message: '',
+      priorityLevel: 4
     },
     {
       id: 'reply',
       type: FingerRuleType.REPLY,
-      priorityLevel: 'Low Priority',
+      priorityLevelDescription: 'Low Priority',
       username: 'You have a reply or a direct question about the current topic.',
-      message: ''
+      message: '',
+      priorityLevel: 3
     },
     {
       id: 'too-long',
       type: FingerRuleType.TOO_LONG,
-      priorityLevel: 'Medium priority',
+      priorityLevelDescription: 'Medium priority',
       username: 'You feel like you have enough information on the topic. Topic should end soon.',
-      message: ''
+      message: '',
+      priorityLevel: 2
     },
     {
       id: 'technical',
       type: FingerRuleType.TECHNICAL,
-      priorityLevel: 'High Priority',
+      priorityLevelDescription: 'High Priority',
       username: 'You are having technical difficulties (can’t hear somebody, presentation not working, ...)',
-      message: ''
+      message: '',
+      priorityLevel: 1
     },
     {
       id: 'funny-remark',
       type: FingerRuleType.FUNNY_REMARK,
-      priorityLevel: 'Highest Priority',
+      priorityLevelDescription: 'Highest Priority',
       username: 'You have a joke or a funny remark. Timing is most important in jokes, so they get top priority.',
-      message: ''
+      message: '',
+      priorityLevel: 0
     }
   ]
 

@@ -7,15 +7,16 @@ export interface FingerRule {
   timestamp?: Date;
   username: string;
   message: string;
-  priorityLevel?: string;
+  priorityLevelDescription?: string;
+  priorityLevel: number;
 }
 
 export enum FingerRuleType {
-  REPLY = 'Reply',
-  TOO_LONG = 'Topic Too Long',
+  FUNNY_REMARK = 'Funny Remark',
   TECHNICAL = 'Technical Remark',
-  NEW_TOPIC = 'New Topic',
-  FUNNY_REMARK = 'Funny Remark'
+  TOO_LONG = 'Topic Too Long',
+  REPLY = 'Reply',
+  NEW_TOPIC = 'New Topic'
 }
 
 @Component({

@@ -28,8 +28,10 @@ export class RuleListComponent implements OnInit, OnDestroy {
 
   randomType(enumeration) {
     const values = Object.keys(enumeration);
-    const enumKey = values[Math.floor(Math.random() * values.length)];
-    return enumeration[enumKey];  }
+    const index = Math.floor(Math.random() * values.length);
+    const enumKey = values[index];
+    return {index, type: enumeration[enumKey]};
+  }
 
   private randomName() {
     const names = ['Matevž', 'Jaka', 'Tone', 'Bine', 'Cene'];
@@ -51,15 +53,22 @@ export class RuleListComponent implements OnInit, OnDestroy {
   }
 
   generateRule() {
-    this.fingerRules.push(
+    const randType = this.randomType(FingerRuleType);
+    this.pushRule(
       {
         id: this.fingerRules.length.toString(),
-        type: this.randomType(FingerRuleType),
+        type: randType.type,
         message: this.randomText(),
         timestamp: new Date(Date.now() - 120000),
-        username: this.randomName()
+        username: this.randomName(),
+        priorityLevel: randType.index
       }
     )
+  }
+
+  pushRule(rule: FingerRule) {
+    this.fingerRules.push(rule);
+    this.fingerRules.sort((a, b) => a.priorityLevel - b.priorityLevel);
   }
 
   ngOnInit() {
@@ -74,4 +83,9 @@ export class RuleListComponent implements OnInit, OnDestroy {
     this.subscriptions.forEach(subscription => subscription.unsubscribe());
   }
 
+  priorityComparator(ruleA: FingerRule, ruleB: FingerRule) {
+    if(ruleA.type === FingerRuleType.FUNNY_REMARK) {
+      return 1;
+    }
+  }
 }
