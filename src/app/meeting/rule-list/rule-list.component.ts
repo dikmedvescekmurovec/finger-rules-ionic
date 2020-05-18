@@ -26,14 +26,38 @@ export class RuleListComponent implements OnInit, OnDestroy {
     );
   }
 
+  randomType(enumeration) {
+    const values = Object.keys(enumeration);
+    const enumKey = values[Math.floor(Math.random() * values.length)];
+    return enumeration[enumKey];  }
+
+  private randomName() {
+    const names = ['Matevž', 'Jaka', 'Tone', 'Bine', 'Cene'];
+    const surnames = ['Ani', 'Boni', 'Celjak', 'Dobnik'];
+    return names[Math.floor(Math.random() * names.length)] + ' ' + surnames[Math.floor(Math.random() * surnames.length)];
+  }
+
+  private randomText() {
+    const randomSentences = [
+      'She folded her handkerchief neatly.',
+      'Bill ran from the giraffe toward the dolphin.',
+      'He had a vague sense that trees gave birth to dinosaurs.',
+      'The best key lime pie is still up for debate.',
+      'She wore green lipstick like a fashion icon.',
+      'Art doesn\'t have to be intentional.',
+      'I purchased a baby clown from the Russian terrorist black market.',
+      'The fish listened intently to what the frogs had to say.'];
+    return randomSentences[Math.floor(Math.random() * randomSentences.length)]
+  }
+
   generateRule() {
     this.fingerRules.push(
       {
         id: this.fingerRules.length.toString(),
-        type: FingerRuleType.TOO_LONG,
-        message: 'Ali so kumare res samo za vlaganje? Res samo za vlaganje? Guyz?',
+        type: this.randomType(FingerRuleType),
+        message: this.randomText(),
         timestamp: new Date(Date.now() - 120000),
-        username: 'Matevž Skrželj'
+        username: this.randomName()
       }
     )
   }
