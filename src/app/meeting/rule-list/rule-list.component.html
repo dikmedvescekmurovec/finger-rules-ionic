@@ -1,13 +1,34 @@
 <div fxFill fxLayout="column">
   <div fxFlex="auto">
-    <ion-list *ngIf="fingerRules.length > 0">
+    <ion-list *ngIf="fingerRules && fingerRules.length > 0">
       <ng-container *ngFor="let fingerRule of fingerRules; trackBy: trackByFn">
         <app-finger-rule (remove)="removeRule($event)" [fingerRule]="fingerRule"></app-finger-rule>
       </ng-container>
     </ion-list>
-    <app-empty-rule-list fxFill *ngIf="fingerRules.length === 0"></app-empty-rule-list>
+
+    <app-empty-rule-list fxFill *ngIf="fingerRules && fingerRules.length === 0 && exists"></app-empty-rule-list>
+
+    <ng-container *ngIf="!fingerRules || !exists">
+      <ion-list>
+        <ion-item *ngFor="let i of [1,2,3]">
+          <ion-avatar slot="start">
+            <ion-skeleton-text animated></ion-skeleton-text>
+          </ion-avatar>
+          <ion-label>
+            <h3>
+              <ion-skeleton-text animated style="width: 50%"></ion-skeleton-text>
+            </h3>
+            <p>
+              <ion-skeleton-text animated style="width: 30%"></ion-skeleton-text>
+            </p>
+          </ion-label>
+        </ion-item>
+      </ion-list>
+    </ng-container>
   </div>
+
   <div fxFlex="nogrow">
-    <ion-button (click)="generateRule()" expand="block">Generate new finger rule</ion-button>
+    <ion-button *ngIf="exists" (click)="generateRule()" expand="block">Generate new finger rule
+    </ion-button>
   </div>
 </div>

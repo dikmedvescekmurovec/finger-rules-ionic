@@ -1,4 +1,4 @@
-import { Component, OnDestroy, OnInit } from '@angular/core';
+import { Component, OnDestroy, OnInit, Input } from '@angular/core';
 import * as moment from 'moment';
 import { Subscription } from 'rxjs';
 import { FingerRule, FingerRuleType } from 'src/app/models/finger-rule.model';
@@ -12,9 +12,12 @@ import { DatabaseService } from 'src/app/services/database.service';
 })
 export class RuleListComponent implements OnInit, OnDestroy {
 
+  @Input()
+  public exists: boolean;
+
   public isAdmin: boolean;
 
-  public fingerRules: FingerRule[] = [];
+  public fingerRules: FingerRule[];
 
   private subscriptions: Subscription[] = [];
 
@@ -79,6 +82,7 @@ export class RuleListComponent implements OnInit, OnDestroy {
     );
     this.subscriptions.push(
       this.db.getFingerRules().subscribe(rules => {
+        console.log(rules);
         this.fingerRules = rules.sort((a, b) => a.priorityLevel - b.priorityLevel);
       })
     );
