@@ -1,9 +1,9 @@
 import { Component, OnDestroy, OnInit } from '@angular/core';
+import * as moment from 'moment';
 import { Subscription } from 'rxjs';
 import { SelectedRulesService } from 'src/app/selected-rules.service';
 import { DatabaseService } from 'src/app/services/database.service';
 import { FingerRule, FingerRuleType } from './finger-rule/finger-rule.component';
-import * as moment from 'moment';
 
 @Component({
   selector: 'app-rule-list',
@@ -25,6 +25,7 @@ export class RuleListComponent implements OnInit, OnDestroy {
 
   removeRule(id: string) {
     this.db.removeRule(id);
+    this.selectedRulesService.deselectRule({id});
   }
 
   randomType(enumeration) {
@@ -76,7 +77,9 @@ export class RuleListComponent implements OnInit, OnDestroy {
   ngOnInit() {
     this.db.getIsAdmin().subscribe(isAdmin => this.isAdmin = isAdmin);
     this.subscriptions.push(
-      this.db.getFingerRules().subscribe(rules => this.fingerRules = rules)
+      this.db.getFingerRules().subscribe(rules => {
+        this.fingerRules = rules.sort((a, b) => a.priorityLevel - b.priorityLevel);
+      })
     );
   }
 

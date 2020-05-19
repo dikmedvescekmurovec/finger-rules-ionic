@@ -13,13 +13,10 @@ export class SelectedRulesService {
 
   selectRule(rule) {
     this.selectedRules.push(rule);
-    console.log(this.selectedRules);
   }
 
   deselectRule(rule) {
-    console.log(rule.id);
     this.selectedRules = this.selectedRules.filter(r => rule.id !== r.id);
-    console.log(this.selectedRules);
   }
 
   isEmpty() {

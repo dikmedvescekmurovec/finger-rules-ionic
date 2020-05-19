@@ -66,6 +66,10 @@ export class FingerRuleComponent implements OnInit, AfterViewInit, OnDestroy {
   }
 
   ngOnDestroy() {
+    console.log(`rule destroyed`, this.fingerRule);
+    setTimeout(() => {
+      this.selectedRulesService.deselectRule(this.fingerRule);
+    }, 0);
   }
 
   /**
