@@ -1,3 +1,4 @@
+import { ClipboardModule } from '@angular/cdk/clipboard';
 import { CommonModule } from '@angular/common';
 import { NgModule } from '@angular/core';
 import { FlexLayoutModule } from '@angular/flex-layout';
@@ -10,17 +11,14 @@ import { EmptyRuleListComponent } from './rule-list/empty-rule-list/empty-rule-l
 import { FingerRuleComponent } from './rule-list/finger-rule/finger-rule.component';
 import { RuleListComponent } from './rule-list/rule-list.component';
 
-
-
-
-
 @NgModule({
   imports: [
     CommonModule,
     FormsModule,
     IonicModule,
     MeetingPageRoutingModule,
-    FlexLayoutModule
+    FlexLayoutModule,
+    ClipboardModule
   ],
   declarations: [MeetingPage,
     RuleListComponent,

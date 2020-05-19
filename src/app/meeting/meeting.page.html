@@ -19,7 +19,7 @@
         <ion-text fxFlex="1 1 100%">{{selectedRulesService.selectedRules.length}}</ion-text>
       </ng-template>
       <ion-buttons slot="secondary">
-        <ion-button color="primary" *ngIf="selectedRulesService.isEmpty(); else selectedRulesButton">
+        <ion-button color="primary" *ngIf="selectedRulesService.isEmpty(); else selectedRulesButton" (click)="copyShareInfo()">
           <ion-icon slot="icon-only" name="share-social-outline"></ion-icon>
         </ion-button>
         <ng-template #selectedRulesButton>

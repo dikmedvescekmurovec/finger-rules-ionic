@@ -1,5 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { ActivatedRoute, Router } from '@angular/router';
+import { Clipboard } from '@ionic-native/clipboard/ngx';
 import { SelectedRulesService } from '../selected-rules.service';
 import { DatabaseService } from '../services/database.service';
 
@@ -17,7 +18,8 @@ export class MeetingPage implements OnInit {
     private activatedRoute: ActivatedRoute,
     private db: DatabaseService,
     public selectedRulesService: SelectedRulesService,
-    private router: Router) { }
+    private router: Router,
+    private clipboard: Clipboard) { }
 
   ngOnInit() {
     this.meetingID = this.activatedRoute.snapshot.paramMap.get('meetingID');
@@ -28,6 +30,11 @@ export class MeetingPage implements OnInit {
 
   back() {
     this.router.navigateByUrl('start');
+  }
+
+  copyShareInfo() {
+    console.log(`To join my Finger Rules meeting click here ${this.router.url} or enter ${this.meetingID} into your app.`);
+    this.clipboard.copy(`To join my Finger Rules meeting click here ${this.router.url} or enter ${this.meetingID} into your app.`);
   }
 
 }

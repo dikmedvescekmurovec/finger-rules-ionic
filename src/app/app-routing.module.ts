@@ -1,6 +1,5 @@
 import { NgModule } from '@angular/core';
 import { PreloadAllModules, RouterModule, Routes } from '@angular/router';
-import { CanActivateMeetingService } from './guards/can-activate-meeting.service';
 
 const routes: Routes = [
   {
