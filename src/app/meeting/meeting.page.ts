@@ -1,5 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { ActivatedRoute } from '@angular/router';
+import { SelectedRulesService } from '../selected-rules.service';
 import { DatabaseService } from '../services/database.service';
 
 @Component({
@@ -12,7 +13,10 @@ export class MeetingPage implements OnInit {
   public meetingID: string;
   public meetingName = '...';
 
-  constructor(private activatedRoute: ActivatedRoute, private db: DatabaseService) { }
+  constructor(
+    private activatedRoute: ActivatedRoute,
+    private db: DatabaseService,
+    public selectedRulesService: SelectedRulesService) { }
 
   ngOnInit() {
     this.meetingID = this.activatedRoute.snapshot.paramMap.get('meetingID');
