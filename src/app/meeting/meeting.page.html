@@ -1,27 +1,28 @@
 <ion-header>
   <ion-toolbar [class.dark-background]="!selectedRulesService.isEmpty()">
-    <div fxLayout="row" fxLayoutAlign="space-between center" *ngIf="selectedRulesService.isEmpty()">
+    <div fxLayout="row" fxLayoutAlign="space-between center">
       <ion-buttons slot="start">
         <ion-button>
           <ion-icon slot="icon-only" name="arrow-back-outline"></ion-icon>
         </ion-button>
       </ion-buttons>
-      <div fxLayout="column">
+      <div fxLayout="column" *ngIf="selectedRulesService.isEmpty(); else selectedRulesText">
         <ion-text>{{meetingName}}</ion-text>
         <ion-text>{{meetingID}}</ion-text>
       </div>
-      <ion-button shape="round" fill="clear">
-        <ion-icon slot="icon-only" name="share-social-outline"></ion-icon>
-      </ion-button>
-    </div>
-    <div fxLayout="row" fxLayoutAlign="space-between center" *ngIf="!selectedRulesService.isEmpty()">
-      <div fxLayout="row" fxLayoutAlign="center center">
-        <ion-back-button defaultHref="start"></ion-back-button>
-        <ion-text>{{selectedRulesService.selectedRules.length}}</ion-text>
-      </div>
-      <ion-button shape="round" fill="clear">
-        <ion-icon slot="icon-only" name="share-social-outline"></ion-icon>
-      </ion-button>
+      <ng-template #selectedRulesText>
+        <ion-text fxFlex="1 1 100%">{{selectedRulesService.selectedRules.length}}</ion-text>
+      </ng-template>
+      <ion-buttons slot="secondary">
+        <ion-button color="primary" *ngIf="selectedRulesService.isEmpty(); else selectedRulesButton">
+          <ion-icon slot="icon-only" name="share-social-outline"></ion-icon>
+        </ion-button>
+        <ng-template #selectedRulesButton>
+          <ion-button color="primary">
+            <ion-text>Remove</ion-text>
+          </ion-button>
+        </ng-template>
+      </ion-buttons>
     </div>
   </ion-toolbar>
 </ion-header>
