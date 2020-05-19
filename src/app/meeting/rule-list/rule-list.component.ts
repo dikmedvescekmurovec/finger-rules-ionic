@@ -3,7 +3,8 @@ import * as moment from 'moment';
 import { Subscription } from 'rxjs';
 import { SelectedRulesService } from 'src/app/selected-rules.service';
 import { DatabaseService } from 'src/app/services/database.service';
-import { FingerRule, FingerRuleType } from './finger-rule/finger-rule.component';
+import * as moment from 'moment';
+import { FingerRule, FingerRuleType } from 'src/app/models/finger-rule.model';
 
 @Component({
   selector: 'app-rule-list',

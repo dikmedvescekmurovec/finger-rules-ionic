@@ -1,10 +1,11 @@
 import { Injectable } from '@angular/core';
-import { AngularFireDatabase, SnapshotAction } from '@angular/fire/database';
+import { AngularFireDatabase } from '@angular/fire/database';
 import { KebabCasePipe } from '../kebab-case.pipe';
-import { take, filter, switchMap, tap, map } from 'rxjs/operators';
+import { take, filter, switchMap, map } from 'rxjs/operators';
 import { Observable } from 'rxjs';
 import { AuthService } from './auth.service';
-import { FingerRule } from '../meeting/rule-list/finger-rule/finger-rule.component';
+import { FingerRule } from '../models/finger-rule.model';
+import { User } from '../models/user.model';
 
 @Injectable({
   providedIn: 'root'
@@ -68,6 +69,10 @@ export class DatabaseService {
 
   public removeRule(id: string) {
     this.db.object<FingerRule>(`meetings/${this.meetingID}/rules/${id}`).remove();
+  }
+
+  public getUsers(): Observable<User[]> {
+    return this.db.list<User>(`meeting/${this.meetingID}/users`).valueChanges();
   }
 
 }

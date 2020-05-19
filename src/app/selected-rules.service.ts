@@ -1,5 +1,5 @@
 import { Injectable } from '@angular/core';
-import { FingerRule } from './meeting/rule-list/finger-rule/finger-rule.component';
+import { FingerRule } from './models/finger-rule.model';
 
 @Injectable({
   providedIn: 'root'

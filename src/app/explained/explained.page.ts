@@ -1,5 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-import { FingerRule, FingerRuleType } from '../meeting/rule-list/finger-rule/finger-rule.component';
+import { FingerRule, FingerRuleType } from '../models/finger-rule.model';
 
 @Component({
   selector: 'app-explained',
