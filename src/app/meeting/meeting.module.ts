@@ -3,6 +3,7 @@ import { CommonModule } from '@angular/common';
 import { NgModule } from '@angular/core';
 import { FlexLayoutModule } from '@angular/flex-layout';
 import { FormsModule } from '@angular/forms';
+import { Clipboard } from '@ionic-native/clipboard/ngx';
 import { IonicModule } from '@ionic/angular';
 import { KebabCasePipe } from '../kebab-case.pipe';
 import { MeetingPageRoutingModule } from './meeting-routing.module';
@@ -24,6 +25,9 @@ import { RuleListComponent } from './rule-list/rule-list.component';
     RuleListComponent,
     FingerRuleComponent,
     KebabCasePipe,
-    EmptyRuleListComponent]
+    EmptyRuleListComponent],
+  providers: [
+    Clipboard
+  ]
 })
 export class MeetingPageModule { }
