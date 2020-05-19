@@ -1,5 +1,6 @@
 import { Injectable } from '@angular/core';
 import { Subject } from 'rxjs';
+import { DatabaseService } from 'src/app/services/database.service';
 import { FingerRule } from './models/finger-rule.model';
 
 @Injectable({
@@ -9,7 +10,7 @@ export class SelectedRulesService {
 
   public selectedRules: FingerRule[] = [];
 
-  constructor() { }
+  constructor(private db: DatabaseService) { }
 
   private selectChangeSource = new Subject<void>();
   public selectChange$ = this.selectChangeSource.asObservable();
@@ -26,6 +27,12 @@ export class SelectedRulesService {
 
   isEmpty() {
     return this.selectedRules.length === 0;
+  }
+
+  removeAll() {
+    for (const rule of this.selectedRules) {
+      this.db.removeRule(rule.id);
+    }
   }
 
   clear() {
