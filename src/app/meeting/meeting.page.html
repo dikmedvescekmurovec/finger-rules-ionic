@@ -1,7 +1,11 @@
 <ion-header>
   <ion-toolbar [class.dark-background]="!selectedRulesService.isEmpty()">
     <div fxLayout="row" fxLayoutAlign="space-between center" *ngIf="selectedRulesService.isEmpty()">
-      <ion-back-button defaultHref="start"></ion-back-button>
+      <ion-buttons slot="start">
+        <ion-button>
+          <ion-icon slot="icon-only" name="arrow-back-outline"></ion-icon>
+        </ion-button>
+      </ion-buttons>
       <div fxLayout="column">
         <ion-text>{{meetingName}}</ion-text>
         <ion-text>{{meetingID}}</ion-text>
