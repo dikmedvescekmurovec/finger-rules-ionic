@@ -1,5 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-import { ActivatedRoute } from '@angular/router';
+import { ActivatedRoute, Router } from '@angular/router';
 import { SelectedRulesService } from '../selected-rules.service';
 import { DatabaseService } from '../services/database.service';
 
@@ -16,13 +16,18 @@ export class MeetingPage implements OnInit {
   constructor(
     private activatedRoute: ActivatedRoute,
     private db: DatabaseService,
-    public selectedRulesService: SelectedRulesService) { }
+    public selectedRulesService: SelectedRulesService,
+    private router: Router) { }
 
   ngOnInit() {
     this.meetingID = this.activatedRoute.snapshot.paramMap.get('meetingID');
     this.db.setMeetingID(this.meetingID);
     this.db.joinMeeting();
     this.db.getMeetingName(this.meetingID).subscribe(meetingName => this.meetingName = meetingName);
+  }
+
+  back() {
+    this.router.navigateByUrl('start');
   }
 
 }

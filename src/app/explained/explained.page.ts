@@ -1,4 +1,6 @@
+import { Location } from '@angular/common';
 import { Component, OnInit } from '@angular/core';
+import { Router } from '@angular/router';
 import { FingerRule, FingerRuleType } from '../models/finger-rule.model';
 
 @Component({
@@ -8,7 +10,10 @@ import { FingerRule, FingerRuleType } from '../models/finger-rule.model';
 })
 export class ExplainedPage implements OnInit {
 
-  constructor() { }
+  cameFromMeeting: boolean;
+
+  constructor(private location: Location, private router: Router) {
+   }
 
   public ruleListExplained: FingerRule[] = [
     {
@@ -54,6 +59,15 @@ export class ExplainedPage implements OnInit {
   ]
 
   ngOnInit() {
+    console.log(history.state);
+  }
+
+  back() {
+    if(history.state.cameFromMeeting) {
+      this.location.back();
+    } else {
+      this.router.navigateByUrl('start');
+    }
   }
 
 }

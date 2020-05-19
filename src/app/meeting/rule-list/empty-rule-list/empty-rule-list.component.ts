@@ -16,6 +16,6 @@ export class EmptyRuleListComponent implements OnInit {
    * Go to help page
    */
   helpPage() {
-    this.router.navigateByUrl('help');
+    this.router.navigateByUrl('help', {state: {cameFromMeeting: true}});
   }
 }

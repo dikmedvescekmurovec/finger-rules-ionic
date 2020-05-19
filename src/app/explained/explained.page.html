@@ -1,9 +1,11 @@
 <ion-header>
   <ion-toolbar>
-    <div fxLayout="row" fxLayoutAlign="start center">
-      <ion-back-button defaultHref="start"></ion-back-button>
-      <ion-text>Finger Rules</ion-text>
-    </div>
+    <ion-buttons slot="start">
+      <ion-button (click)="back()">
+        <ion-icon slot="icon-only" name="arrow-back-outline"></ion-icon>
+      </ion-button>
+    </ion-buttons>
+    <ion-text>Finger Rules</ion-text>
   </ion-toolbar>
 </ion-header>
 
