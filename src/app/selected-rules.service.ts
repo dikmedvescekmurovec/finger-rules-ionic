@@ -17,7 +17,6 @@ export class SelectedRulesService {
   selectRule(rule) {
     this.selectedRules.push(rule);
     this.selectChangeSource.next();
-
   }
 
   deselectRule(rule) {
@@ -35,8 +34,6 @@ export class SelectedRulesService {
   }
 
   isSelected(rule) {
-    console.log(this.selectedRules.some(r => r.id === rule.id));
-    console.log(this.selectedRules, rule);
     return this.selectedRules.some(r => r.id === rule.id);
   }
 }

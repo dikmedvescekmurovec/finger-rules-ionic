@@ -38,7 +38,6 @@ export class FingerRuleComponent implements OnInit, AfterViewInit, OnDestroy {
     }
     this.selectedRulesService.selectChange$.subscribe(
       () => {
-        console.log('deselect event');
         this.isSelected = this.selectedRulesService.isSelected(this.fingerRule)
       }
     )

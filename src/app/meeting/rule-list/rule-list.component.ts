@@ -4,7 +4,6 @@ import { Subscription } from 'rxjs';
 import { FingerRule, FingerRuleType } from 'src/app/models/finger-rule.model';
 import { SelectedRulesService } from 'src/app/selected-rules.service';
 import { DatabaseService } from 'src/app/services/database.service';
-import { FingerRule, FingerRuleType } from 'src/app/models/finger-rule.model';
 
 @Component({
   selector: 'app-rule-list',
