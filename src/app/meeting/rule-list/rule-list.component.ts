@@ -74,7 +74,9 @@ export class RuleListComponent implements OnInit, OnDestroy {
   }
 
   ngOnInit() {
-    this.db.getIsAdmin().subscribe(isAdmin => this.isAdmin = isAdmin);
+    this.subscriptions.push(
+      this.db.getIsAdmin().subscribe(isAdmin => this.isAdmin = isAdmin)
+    );
     this.subscriptions.push(
       this.db.getFingerRules().subscribe(rules => {
         this.fingerRules = rules.sort((a, b) => a.priorityLevel - b.priorityLevel);

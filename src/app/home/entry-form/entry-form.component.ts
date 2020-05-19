@@ -61,12 +61,10 @@ export class EntryFormComponent implements OnInit {
 
     if (this.doesMeetingExist) {
       meetingID = this.entryForm.get('meeting').value;
-      this.db.setIsAdmin(false);
     } else {
       const meetingName = this.entryForm.get('meeting').value;
       meetingID = this.db.generateMeetingID(meetingName);
       await this.db.createMeeting(meetingID, meetingName);
-      this.db.setIsAdmin(true);
     }
 
     this.router.navigate(['meeting', meetingID]);

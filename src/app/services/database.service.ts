@@ -23,7 +23,8 @@ export class DatabaseService {
 
   public createMeeting(meetingID: string, meetingName: string): Promise<void> {
     return this.db.object(`meetings/${meetingID}`).set({
-      name: meetingName
+      name: meetingName,
+      admin: this.auth.getUid()
     });
   }
 
@@ -40,15 +41,10 @@ export class DatabaseService {
     this.meetingID = meetingID;
   }
 
-  public setIsAdmin(isAdmin: boolean) {
-    this.isAdmin = isAdmin;
-  }
-
   public getIsAdmin(): Observable<boolean> {
-    return this.auth.getUid$().pipe(
-      filter(uid => !!uid),
-      switchMap(uid => this.db.object<boolean>(`meetings/${this.meetingID}/users/${uid}/isAdmin`).valueChanges())
-    ).pipe(take(1));
+    return this.db.object<string>(`meetings/${this.meetingID}/admin`).valueChanges().pipe(
+      map(admin => admin === this.auth.getUid())
+    );
   }
 
   public async joinMeeting(): Promise<void> {
