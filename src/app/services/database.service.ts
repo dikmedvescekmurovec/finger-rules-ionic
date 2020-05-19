@@ -72,7 +72,7 @@ export class DatabaseService {
   }
 
   public getUsers(): Observable<User[]> {
-    return this.db.list<User>(`meeting/${this.meetingID}/users`).valueChanges();
+    return this.db.list<User>(`meetings/${this.meetingID}/users`).valueChanges();
   }
 
 }
