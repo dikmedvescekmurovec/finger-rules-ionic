@@ -21,6 +21,7 @@ export class MeetingPage implements OnInit {
   ngOnInit() {
     this.meetingID = this.activatedRoute.snapshot.paramMap.get('meetingID');
     this.db.setMeetingID(this.meetingID);
+    this.db.joinMeeting();
     this.db.getMeetingName(this.meetingID).subscribe(meetingName => this.meetingName = meetingName);
   }
 

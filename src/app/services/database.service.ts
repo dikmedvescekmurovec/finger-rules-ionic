@@ -13,6 +13,7 @@ import { User } from '../models/user.model';
 export class DatabaseService {
 
   private meetingID: string;
+  private isAdmin: boolean;
 
   constructor(
     private db: AngularFireDatabase,
@@ -39,6 +40,10 @@ export class DatabaseService {
     this.meetingID = meetingID;
   }
 
+  public setIsAdmin(isAdmin: boolean) {
+    this.isAdmin = isAdmin;
+  }
+
   public getIsAdmin(): Observable<boolean> {
     return this.auth.getUid$().pipe(
       filter(uid => !!uid),
@@ -46,15 +51,25 @@ export class DatabaseService {
     ).pipe(take(1));
   }
 
-  public joinMeeting(meetingID: string, isAdmin: boolean): Promise<void> {
-    this.setMeetingID(meetingID);
+  public async joinMeeting(): Promise<void> {
+    this.setMeetingID(this.meetingID);
     const username = this.auth.getUsername();
-    const uid = this.auth.getUid();
 
-    return this.db.object(`meetings/${meetingID}/users/${uid}`).set({
+    const uid = await this.auth.getUid$().pipe(
+      filter(u => !!u),
+      take(1)
+    ).toPromise();
+
+    this.removeOnDisconnect(uid);
+
+    return this.db.object(`meetings/${this.meetingID}/users/${uid}`).set({
       username,
-      isAdmin
+      isAdmin: this.isAdmin ? true : null
     });
+  }
+
+  private removeOnDisconnect(uid: string) {
+    this.db.database.ref(`meetings/${this.meetingID}/users/${uid}`).onDisconnect().remove();
   }
 
   public getFingerRules(): Observable<FingerRule[]> {
