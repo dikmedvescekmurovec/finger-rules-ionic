@@ -3,7 +3,6 @@ import * as moment from 'moment';
 import { Subscription } from 'rxjs';
 import { SelectedRulesService } from 'src/app/selected-rules.service';
 import { DatabaseService } from 'src/app/services/database.service';
-import * as moment from 'moment';
 import { FingerRule, FingerRuleType } from 'src/app/models/finger-rule.model';
 
 @Component({
@@ -26,7 +25,7 @@ export class RuleListComponent implements OnInit, OnDestroy {
 
   removeRule(id: string) {
     this.db.removeRule(id);
-    this.selectedRulesService.deselectRule({id});
+    this.selectedRulesService.deselectRule({ id });
   }
 
   randomType(enumeration) {
