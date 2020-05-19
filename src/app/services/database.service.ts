@@ -24,6 +24,7 @@ export class DatabaseService {
   public createMeeting(meetingID: string, meetingName: string): Promise<void> {
     return this.db.object(`meetings/${meetingID}`).set({
       name: meetingName,
+      id: meetingID,
       admin: this.auth.getUid()
     });
   }
@@ -44,6 +45,13 @@ export class DatabaseService {
   public getIsAdmin(): Observable<boolean> {
     return this.db.object<string>(`meetings/${this.meetingID}/admin`).valueChanges().pipe(
       map(admin => admin === this.auth.getUid())
+    );
+  }
+
+  public doesMeetingExist(meetingID: string): Observable<boolean> {
+    return this.db.object<string>(`meetings/${meetingID}/id`).valueChanges().pipe(
+      map(id => !!id),
+      take(1)
     );
   }
 

@@ -1,9 +1,10 @@
 import { NgModule } from '@angular/core';
 import { PreloadAllModules, RouterModule, Routes } from '@angular/router';
+import { CanActivateMeetingService } from './guards/can-activate-meeting.service';
 
 const routes: Routes = [
   {
-    path: 'start',
+    path: '',
     loadChildren: () => import('./home/home.module').then(m => m.HomePageModule)
   },
   {
@@ -16,7 +17,7 @@ const routes: Routes = [
   },
   {
     path: '**',
-    redirectTo: 'start'
+    redirectTo: ''
   },
 
 ];
