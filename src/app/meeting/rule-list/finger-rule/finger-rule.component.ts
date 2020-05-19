@@ -1,7 +1,7 @@
 import { AfterViewInit, Component, ElementRef, EventEmitter, Input, OnDestroy, OnInit, Output, ViewChild } from '@angular/core';
 import * as moment from 'moment';
-import { SelectedRulesService } from 'src/app/selected-rules.service';
 import { FingerRule } from 'src/app/models/finger-rule.model';
+import { SelectedRulesService } from 'src/app/selected-rules.service';
 
 @Component({
   selector: 'app-finger-rule',
@@ -24,12 +24,6 @@ export class FingerRuleComponent implements OnInit, AfterViewInit, OnDestroy {
 
   @ViewChild('deselected') deselectedRef: ElementRef;
 
-  @Output()
-  selected: EventEmitter<FingerRule> = new EventEmitter<FingerRule>();
-
-  @Output()
-  deselected: EventEmitter<FingerRule> = new EventEmitter<FingerRule>();
-
   @Input()
   canDelete = true;
 
@@ -42,6 +36,12 @@ export class FingerRuleComponent implements OnInit, AfterViewInit, OnDestroy {
     if (this.fingerRule.timestamp) {
       this.humanizedTimestamp = moment(this.fingerRule.timestamp).fromNow();
     }
+    this.selectedRulesService.selectChange$.subscribe(
+      () => {
+        console.log('deselect event');
+        this.isSelected = this.selectedRulesService.isSelected(this.fingerRule)
+      }
+    )
   }
 
   ngAfterViewInit() {
@@ -59,20 +59,18 @@ export class FingerRuleComponent implements OnInit, AfterViewInit, OnDestroy {
    * Emits remove rule event
    */
   removeRule() {
-    this.deselected.emit(this.fingerRule);
+    this.selectedRulesService.deselectRule(this.fingerRule);
     document.querySelector(`#${CSS.escape(this.fingerRule.id)}`).className += ' fade-out'
     setTimeout(() => this.remove.emit(this.fingerRule.id), 200);
   }
 
   selectRule() {
     this.selectedRulesService.selectRule(this.fingerRule)
-    this.isSelected = true;
     this.firstDraw = false;
   }
 
   deselectRule() {
     this.selectedRulesService.deselectRule(this.fingerRule)
-    this.isSelected = false;
   }
 
 }

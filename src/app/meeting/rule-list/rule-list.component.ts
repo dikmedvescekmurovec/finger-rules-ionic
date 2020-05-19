@@ -1,6 +1,7 @@
 import { Component, OnDestroy, OnInit } from '@angular/core';
 import * as moment from 'moment';
 import { Subscription } from 'rxjs';
+import { FingerRule, FingerRuleType } from 'src/app/models/finger-rule.model';
 import { SelectedRulesService } from 'src/app/selected-rules.service';
 import { DatabaseService } from 'src/app/services/database.service';
 import { FingerRule, FingerRuleType } from 'src/app/models/finger-rule.model';
@@ -25,7 +26,6 @@ export class RuleListComponent implements OnInit, OnDestroy {
 
   removeRule(id: string) {
     this.db.removeRule(id);
-    this.selectedRulesService.deselectRule({ id });
   }
 
   randomType(enumeration) {
