@@ -80,6 +80,10 @@ export class RuleListComponent implements OnInit, OnDestroy {
     );
   }
 
+  public trackByFn(index: number, item: FingerRule) {
+    return item.id;
+  }
+
   ngOnDestroy() {
     this.subscriptions.forEach(subscription => subscription.unsubscribe());
   }

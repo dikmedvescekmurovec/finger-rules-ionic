@@ -1,7 +1,7 @@
 <div fxFill fxLayout="column">
   <div fxFlex="auto">
     <ion-list *ngIf="fingerRules.length > 0">
-      <ng-container *ngFor="let fingerRule of fingerRules">
+      <ng-container *ngFor="let fingerRule of fingerRules; trackBy: trackByFn">
         <app-finger-rule (remove)="removeRule($event)" [fingerRule]="fingerRule"></app-finger-rule>
       </ng-container>
     </ion-list>
