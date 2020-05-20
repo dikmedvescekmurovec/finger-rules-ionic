@@ -11,6 +11,7 @@ import { MeetingPage } from './meeting.page';
 import { EmptyRuleListComponent } from './rule-list/empty-rule-list/empty-rule-list.component';
 import { FingerRuleComponent } from './rule-list/finger-rule/finger-rule.component';
 import { RuleListComponent } from './rule-list/rule-list.component';
+import { RuleInputComponent } from './rule-list/rule-input/rule-input.component';
 
 @NgModule({
   imports: [
@@ -25,7 +26,8 @@ import { RuleListComponent } from './rule-list/rule-list.component';
     RuleListComponent,
     FingerRuleComponent,
     KebabCasePipe,
-    EmptyRuleListComponent],
+    EmptyRuleListComponent,
+    RuleInputComponent],
   providers: [
     Clipboard
   ]
