@@ -1,8 +1,9 @@
 import { Component, OnInit } from '@angular/core';
 import { ActivatedRoute, Router } from '@angular/router';
-import { Clipboard } from '@ionic-native/clipboard/ngx';
 import { SelectedRulesService } from '../selected-rules.service';
 import { DatabaseService } from '../services/database.service';
+import { Clipboard } from '@angular/cdk/clipboard';
+import { ToastController } from '@ionic/angular';
 
 @Component({
   selector: 'app-meeting',
@@ -20,7 +21,9 @@ export class MeetingPage implements OnInit {
     private db: DatabaseService,
     public selectedRulesService: SelectedRulesService,
     private router: Router,
-    private clipboard: Clipboard) { }
+    private clipboard: Clipboard,
+    private toastController: ToastController
+  ) { }
 
   ngOnInit() {
     this.meetingID = this.activatedRoute.snapshot.paramMap.get('meetingID');
@@ -34,13 +37,17 @@ export class MeetingPage implements OnInit {
     })
   }
 
-  back() {
+  public back() {
     this.router.navigateByUrl('start');
   }
 
-  copyShareInfo() {
-    console.log(`To join my Finger Rules meeting click here ${this.router.url} or enter ${this.meetingID} into your app.`);
-    this.clipboard.copy(`To join my Finger Rules meeting click here ${this.router.url} or enter ${this.meetingID} into your app.`);
+  async copyShareInfo() {
+    this.clipboard.copy(`To join my Finger Rules meeting, click this link ${window.location.href}`);
+    const toast = await this.toastController.create({
+      message: 'Joining info has been copied to the clipboard.',
+      duration: 5000
+    });
+    toast.present();
   }
 
 }
