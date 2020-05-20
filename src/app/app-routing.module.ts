@@ -1,5 +1,6 @@
 import { NgModule } from '@angular/core';
 import { PreloadAllModules, RouterModule, Routes } from '@angular/router';
+import { HasUsernameGuard } from './guard/has-username.guard';
 
 const routes: Routes = [
   {
@@ -8,6 +9,7 @@ const routes: Routes = [
   },
   {
     path: 'meeting/:meetingID',
+    canActivate: [HasUsernameGuard],
     loadChildren: () => import('./meeting/meeting.module').then(m => m.MeetingPageModule)
   },
   {
