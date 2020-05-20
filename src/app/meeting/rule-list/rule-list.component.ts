@@ -4,6 +4,8 @@ import { Subscription } from 'rxjs';
 import { FingerRule, FingerRuleType } from 'src/app/models/finger-rule.model';
 import { SelectedRulesService } from 'src/app/selected-rules.service';
 import { DatabaseService } from 'src/app/services/database.service';
+import { ToastController } from '@ionic/angular';
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-rule-list',
@@ -21,8 +23,12 @@ export class RuleListComponent implements OnInit, OnDestroy {
 
   private subscriptions: Subscription[] = [];
 
-  constructor(private db: DatabaseService,
-    private selectedRulesService: SelectedRulesService) { }
+  constructor(
+    private db: DatabaseService,
+    private selectedRulesService: SelectedRulesService,
+    private toastController: ToastController,
+    private router: Router
+  ) { }
 
   public selectedRules: FingerRule[] = []
 
@@ -82,10 +88,21 @@ export class RuleListComponent implements OnInit, OnDestroy {
     );
     this.subscriptions.push(
       this.db.getFingerRules().subscribe(rules => {
-        console.log(rules);
         this.fingerRules = rules.sort((a, b) => a.priorityLevel - b.priorityLevel);
+        if (rules.length === 0 && !this.exists) {
+          this.createMeetingDoesNotExistToast();
+        }
       })
     );
+  }
+
+  private async createMeetingDoesNotExistToast() {
+    const toast = await this.toastController.create({
+      message: 'Meeting does not exist.',
+      duration: 5000
+    });
+    toast.present();
+    setTimeout(() => this.router.navigate(['/']), 500);
   }
 
   public trackByFn(index: number, item: FingerRule) {
