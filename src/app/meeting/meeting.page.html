@@ -23,17 +23,13 @@
         <ion-text fxFlex="1 1 100%">{{selectedRulesService.selectedRules.length}}</ion-text>
       </ng-template>
       <ion-buttons slot="secondary">
-        <ion-button color="primary" *ngIf="selectedRulesService.isEmpty(); else selectedRulesButton"
-          (click)="copyShareInfo()">
-          <ion-icon slot="icon-only" name="share-social-outline"></ion-icon>
+        <ion-button *ngIf="selectedRulesService.isEmpty(); else selectedRulesButton" (click)="createPopover($event)">
+          <ion-icon slot="icon-only" ios="ellipsis-horizontal" md="ellipsis-vertical"></ion-icon>
         </ion-button>
         <ng-template #selectedRulesButton>
           <ion-button color="primary" (click)="selectedRulesService.removeAll()">
             <ion-text>Remove</ion-text>
           </ion-button>
-          <!-- <ion-button color="primary">
-            <ion-icon slot="icon-only" name="ellipsis-vertical"></ion-icon>
-          </ion-button> -->
         </ng-template>
       </ion-buttons>
     </div>

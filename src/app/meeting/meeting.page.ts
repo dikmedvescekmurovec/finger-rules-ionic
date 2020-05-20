@@ -2,8 +2,8 @@ import { Component, OnInit } from '@angular/core';
 import { ActivatedRoute, Router } from '@angular/router';
 import { SelectedRulesService } from '../selected-rules.service';
 import { DatabaseService } from '../services/database.service';
-import { Clipboard } from '@angular/cdk/clipboard';
-import { ToastController } from '@ionic/angular';
+import { MenuComponent } from './menu/menu.component';
+import { PopoverController } from '@ionic/angular';
 
 @Component({
   selector: 'app-meeting',
@@ -21,8 +21,7 @@ export class MeetingPage implements OnInit {
     private db: DatabaseService,
     public selectedRulesService: SelectedRulesService,
     private router: Router,
-    private clipboard: Clipboard,
-    private toastController: ToastController
+    public popoverController: PopoverController
   ) { }
 
   ngOnInit() {
@@ -41,13 +40,13 @@ export class MeetingPage implements OnInit {
     this.router.navigateByUrl('start');
   }
 
-  async copyShareInfo() {
-    this.clipboard.copy(`To join my Finger Rules meeting, click this link ${window.location.href}`);
-    const toast = await this.toastController.create({
-      message: 'Joining info has been copied to the clipboard.',
-      duration: 5000
+  public async createPopover(event: any) {
+    const popover = await this.popoverController.create({
+      component: MenuComponent,
+      event,
+      translucent: true
     });
-    toast.present();
+    return await popover.present();
   }
 
 }
