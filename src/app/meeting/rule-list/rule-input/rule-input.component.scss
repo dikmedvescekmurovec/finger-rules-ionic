@@ -1,9 +1,8 @@
-ion-input {
-  background-color: aliceblue;
+ion-item {
+  flex: 1;
   border-radius: 100rem;
-  ::ng-deep .native-input {
-    padding: 0 1rem;
-  }
+
+  --full-highlight-height: 0;
 }
 
 ion-icon {

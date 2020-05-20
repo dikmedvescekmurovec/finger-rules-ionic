@@ -4,7 +4,9 @@
       <ion-icon slot="icon-only" src="assets/icon/{{type | kebabCase}}.svg"></ion-icon>
     </ion-button>
   </ion-buttons>
-  <ion-input [(ngModel)]="message" aria-placeholder="Aa" placeholder="Aa" name="message"></ion-input>
+  <ion-item>
+    <ion-input [(ngModel)]="message" aria-placeholder="Aa" placeholder="Aa" name="message"></ion-input>
+  </ion-item>
   <ion-buttons>
     <ion-button type="submit">
       <ion-icon slot="icon-only" name="send"></ion-icon>
