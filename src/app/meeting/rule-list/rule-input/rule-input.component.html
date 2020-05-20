@@ -1,13 +1,13 @@
-<div fxLayout="row" class="ion-margin-top ion-margin-bottom">
+<form (ngSubmit)="send()" fxLayout="row" class="ion-margin-top ion-margin-bottom">
   <ion-buttons>
-    <ion-button>
+    <ion-button (click)="chooseRuleType()">
       <ion-icon slot="icon-only" src="assets/icon/{{type | kebabCase}}.svg"></ion-icon>
     </ion-button>
   </ion-buttons>
-  <ion-input [(ngModel)]="message" aria-placeholder="Aa" placeholder="Aa"></ion-input>
+  <ion-input [(ngModel)]="message" aria-placeholder="Aa" placeholder="Aa" name="message"></ion-input>
   <ion-buttons>
-    <ion-button (click)="send()">
+    <ion-button type="submit">
       <ion-icon slot="icon-only" name="send"></ion-icon>
     </ion-button>
   </ion-buttons>
-</div>
+</form>

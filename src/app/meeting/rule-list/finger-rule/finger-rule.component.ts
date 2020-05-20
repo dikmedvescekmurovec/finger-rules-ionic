@@ -2,6 +2,7 @@ import { AfterViewInit, Component, ElementRef, EventEmitter, Input, OnDestroy, O
 import * as moment from 'moment';
 import { FingerRule } from 'src/app/models/finger-rule.model';
 import { SelectedRulesService } from 'src/app/selected-rules.service';
+import { DatabaseService } from 'src/app/services/database.service';
 
 @Component({
   selector: 'app-finger-rule',
@@ -10,7 +11,7 @@ import { SelectedRulesService } from 'src/app/selected-rules.service';
 })
 export class FingerRuleComponent implements OnInit, AfterViewInit, OnDestroy {
 
-  constructor(private selectedRulesService: SelectedRulesService) { }
+  constructor(private selectedRulesService: SelectedRulesService, private db: DatabaseService) { }
 
   public firstDraw = true;
 
@@ -60,7 +61,7 @@ export class FingerRuleComponent implements OnInit, AfterViewInit, OnDestroy {
   removeRule() {
     this.selectedRulesService.deselectRule(this.fingerRule);
     document.querySelector(`#${CSS.escape(this.fingerRule.id)}`).className += ' fade-out'
-    setTimeout(() => this.remove.emit(this.fingerRule.id), 200);
+    setTimeout(() => this.db.removeRule(this.fingerRule.id), 200);
   }
 
   selectRule() {
