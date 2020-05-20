@@ -25,7 +25,7 @@ import { RuleInputComponent } from './rule-list/rule-input/rule-input.component'
     RuleListComponent,
     FingerRuleComponent,
     KebabCasePipe,
-    RuleInputComponent],
-    EmptyRuleListComponent,
+    RuleInputComponent,
+    EmptyRuleListComponent]
 })
 export class MeetingPageModule { }

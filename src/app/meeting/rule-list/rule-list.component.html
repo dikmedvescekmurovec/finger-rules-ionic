@@ -2,7 +2,7 @@
   <div fxFlex="auto">
     <ion-list *ngIf="fingerRules && fingerRules.length > 0">
       <ng-container *ngFor="let fingerRule of fingerRules; trackBy: trackByFn">
-        <app-finger-rule (remove)="removeRule($event)" [fingerRule]="fingerRule"></app-finger-rule>
+        <app-finger-rule [fingerRule]="fingerRule"></app-finger-rule>
       </ng-container>
     </ion-list>
 
@@ -28,8 +28,6 @@
   </div>
 
   <div fxFlex="nogrow">
-    <ion-button *ngIf="exists" (click)="generateRule()" expand="block">Generate new finger rule
-    </ion-button>
     <app-rule-input></app-rule-input>
   </div>
 </div>
