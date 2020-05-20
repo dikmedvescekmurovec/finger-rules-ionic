@@ -3,7 +3,7 @@ export interface FingerRule {
   type: FingerRuleType;
   timestamp?: string;
   username: string;
-  message: string;
+  message?: string;
   priorityLevelDescription?: string;
   priorityLevel: number;
 }

@@ -13,7 +13,7 @@ export class ExplainedPage implements OnInit {
   cameFromMeeting: boolean;
 
   constructor(private location: Location, private router: Router) {
-   }
+  }
 
   public ruleListExplained: FingerRule[] = [
     {
@@ -63,7 +63,7 @@ export class ExplainedPage implements OnInit {
   }
 
   back() {
-    if(history.state.cameFromMeeting) {
+    if (history.state.cameFromMeeting) {
       this.location.back();
     } else {
       this.router.navigateByUrl('start');
