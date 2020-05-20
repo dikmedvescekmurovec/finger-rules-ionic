@@ -1,0 +1,13 @@
+ion-input {
+  background-color: aliceblue;
+  border-radius: 100rem;
+  ::ng-deep .native-input {
+    padding: 0 1rem;
+  }
+}
+
+ion-icon {
+  fill: var(--ion-color-primary) !important;
+  height: 1.5rem;
+  width: 1.5rem;
+}
