@@ -12,17 +12,19 @@
         </ng-template>
       </ion-buttons>
       <div fxLayout="column" *ngIf="selectedRulesService.isEmpty(); else selectedRulesText">
-        <ion-text *ngIf="meetingName; else ghostMeetingName">{{meetingName}}</ion-text>
+        <ion-text class="ion-text-center" *ngIf="meetingName; else ghostMeetingName">{{meetingName}}</ion-text>
         <ng-template #ghostMeetingName>
-          <ion-skeleton-text *ngIf="!meetingName" animated [ngStyle]="{'width': '100%'}"></ion-skeleton-text>
+          <ion-skeleton-text *ngIf="!meetingName" animated [ngStyle]="{'width': '100%', 'height': '1rem'}">
+          </ion-skeleton-text>
         </ng-template>
-        <ion-text>{{meetingID}}</ion-text>
+        <ion-text class="meeting-id">{{meetingID}}</ion-text>
       </div>
       <ng-template #selectedRulesText>
         <ion-text fxFlex="1 1 100%">{{selectedRulesService.selectedRules.length}}</ion-text>
       </ng-template>
       <ion-buttons slot="secondary">
-        <ion-button color="primary" *ngIf="selectedRulesService.isEmpty(); else selectedRulesButton" (click)="copyShareInfo()">
+        <ion-button color="primary" *ngIf="selectedRulesService.isEmpty(); else selectedRulesButton"
+          (click)="copyShareInfo()">
           <ion-icon slot="icon-only" name="share-social-outline"></ion-icon>
         </ion-button>
         <ng-template #selectedRulesButton>
