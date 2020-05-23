@@ -31,10 +31,12 @@ ion-icon {
 
   &.selected {
     background-color: var(--ion-color-light);
+    cursor: pointer;
   }
 }
 
 .selectable {
+  cursor: pointer;
   box-shadow: 0 0 0 1pt var(--ion-color-light);
 }
 
