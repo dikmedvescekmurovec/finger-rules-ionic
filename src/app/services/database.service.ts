@@ -1,7 +1,7 @@
 import { Injectable } from '@angular/core';
 import { AngularFireDatabase } from '@angular/fire/database';
 import { KebabCasePipe } from '../kebab-case.pipe';
-import { take, filter, switchMap, map } from 'rxjs/operators';
+import { take, filter, map } from 'rxjs/operators';
 import { Observable } from 'rxjs';
 import { AuthService } from './auth.service';
 import { FingerRule } from '../models/finger-rule.model';

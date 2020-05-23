@@ -1,8 +1,9 @@
-import { AfterViewInit, Component, ElementRef, EventEmitter, Input, OnDestroy, OnInit, Output, ViewChild } from '@angular/core';
+import { AfterViewInit, Component, ElementRef, EventEmitter, Input, OnDestroy, OnInit, Output, ViewChild, ChangeDetectorRef } from '@angular/core';
 import * as moment from 'moment';
 import { FingerRule } from 'src/app/models/finger-rule.model';
 import { SelectedRulesService } from 'src/app/selected-rules.service';
 import { DatabaseService } from 'src/app/services/database.service';
+import { Subscription, timer, interval } from 'rxjs';
 
 @Component({
   selector: 'app-finger-rule',
@@ -11,12 +12,16 @@ import { DatabaseService } from 'src/app/services/database.service';
 })
 export class FingerRuleComponent implements OnInit, AfterViewInit, OnDestroy {
 
-  constructor(private selectedRulesService: SelectedRulesService, private db: DatabaseService) { }
+  constructor(
+    private selectedRulesService: SelectedRulesService,
+    private db: DatabaseService,
+    private changeDetectionRef: ChangeDetectorRef
+  ) { }
 
   public firstDraw = true;
 
   @Input()
-  fingerRule: FingerRule;
+  public fingerRule: FingerRule;
 
   @Input()
   public isAdmin: boolean;
@@ -25,30 +30,32 @@ export class FingerRuleComponent implements OnInit, AfterViewInit, OnDestroy {
   public isOwner: boolean;
 
   @Input()
-  selectable = true;
+  public selectable = true;
 
   public isSelected = false;
 
   @ViewChild('deselected') deselectedRef: ElementRef;
 
   @Input()
-  deletable = true;
+  public deletable = true;
 
   @Output()
   remove: EventEmitter<string> = new EventEmitter();
 
-  public humanizedTimestamp: string;
+  private subscriptions: Subscription[] = [];
 
   ngOnInit() {
-    console.log(this.fingerRule);
-    if (this.fingerRule.timestamp) {
-      this.humanizedTimestamp = moment(this.fingerRule.timestamp).fromNow();
-    }
-    this.selectedRulesService.selectChange$.subscribe(
-      () => {
-        this.isSelected = this.selectedRulesService.isSelected(this.fingerRule)
-      }
-    )
+    this.subscriptions.push(
+      this.selectedRulesService.selectChange$.subscribe(
+        () => this.isSelected = this.selectedRulesService.isSelected(this.fingerRule)
+      )
+    );
+
+    this.subscriptions.push(interval(1000 * 60).subscribe(() => this.changeDetectionRef.detectChanges()));
+  }
+
+  public get humanizedTimestamp(): string {
+    return moment(this.fingerRule.timestamp).fromNow();
   }
 
   ngAfterViewInit() {
@@ -59,6 +66,7 @@ export class FingerRuleComponent implements OnInit, AfterViewInit, OnDestroy {
     setTimeout(() => {
       this.selectedRulesService.deselectRule(this.fingerRule);
     }, 0);
+    this.subscriptions.forEach(subscription => subscription.unsubscribe());
   }
 
   /**
