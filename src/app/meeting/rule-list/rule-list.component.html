@@ -1,5 +1,5 @@
 <div fxFill fxLayout="column">
-  <div fxFlex="auto">
+  <div fxFlex="auto" class="list-wrapper">
     <ion-list *ngIf="fingerRules && fingerRules.length > 0">
       <ng-container *ngFor="let fingerRule of fingerRules; trackBy: trackByFn">
         <app-finger-rule [isAdmin]="isAdmin" [isOwner]="auth.getUid() === fingerRule.uid" [fingerRule]="fingerRule">
