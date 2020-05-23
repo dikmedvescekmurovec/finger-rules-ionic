@@ -71,20 +71,24 @@ export class FingerRuleComponent implements OnInit, AfterViewInit, OnDestroy {
   }
 
   selectRule() {
-    if (this.selectable && this.canDelete()) {
+    if (this.canSelect()) {
       this.selectedRulesService.selectRule(this.fingerRule)
       this.firstDraw = false;
     }
   }
 
   deselectRule() {
-    if (this.selectable && this.canDelete()) {
+    if (this.canSelect()) {
       this.selectedRulesService.deselectRule(this.fingerRule)
     }
   }
 
   canDelete() {
     return (this.isAdmin || this.isOwner) && this.deletable;
+  }
+
+  canSelect() {
+    return this.selectable && this.canDelete();
   }
 
 }

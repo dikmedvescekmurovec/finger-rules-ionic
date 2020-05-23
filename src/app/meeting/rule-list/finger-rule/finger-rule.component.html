@@ -2,8 +2,8 @@
   <div fxFill fxLayout="column">
     <div fxLayout="row" fxLayoutAlign="space-between center">
       <div>
-        <div class="icon-background" [class.flip-vertical-right]="!firstDraw" *ngIf="!isSelected"
-          fxLayoutAlign="center center" fxFlex="0 0 auto" (click)="selectRule()">
+        <div class="icon-background" [class.selectable]="canSelect()" [class.flip-vertical-right]="!firstDraw"
+          *ngIf="!isSelected" fxLayoutAlign="center center" fxFlex="0 0 auto" (click)="selectRule()">
           <ion-icon src="assets/icon/{{fingerRule.type | kebabCase}}.svg"></ion-icon>
         </div>
         <div class="icon-background selected flip-vertical-right" *ngIf="isSelected" fxLayoutAlign="center center"
@@ -21,7 +21,7 @@
           </div>
         </div>
       </div>
-      <ion-icon *ngIf="(isAdmin || isOwner) && canDelete" name="close-outline" (click)="removeRule()">
+      <ion-icon *ngIf="canDelete()" name="close-outline" (click)="removeRule()">
       </ion-icon>
     </div>
     <ion-text *ngIf="fingerRule.message" class="ion-margin-top">{{fingerRule.message}}</ion-text>
