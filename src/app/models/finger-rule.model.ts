@@ -1,4 +1,5 @@
 export interface FingerRule {
+  uid?: string;
   id: string;
   type: FingerRuleType;
   timestamp?: string;

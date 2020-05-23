@@ -45,6 +45,7 @@ export class FingerRuleComponent implements OnInit, AfterViewInit, OnDestroy {
   private subscriptions: Subscription[] = [];
 
   ngOnInit() {
+    console.log(this.fingerRule);
     this.subscriptions.push(
       this.selectedRulesService.selectChange$.subscribe(
         () => this.isSelected = this.selectedRulesService.isSelected(this.fingerRule)

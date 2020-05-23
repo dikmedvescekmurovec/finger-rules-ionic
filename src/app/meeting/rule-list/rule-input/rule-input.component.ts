@@ -17,21 +17,13 @@ export class RuleInputComponent implements OnInit {
 
   constructor(private auth: AuthService, private db: DatabaseService, private actionSheetController: ActionSheetController) { }
 
-  ngOnInit() { }
+  ngOnInit() {
+  }
 
   send() {
-    console.log(
-      {
-        id: moment().valueOf().toString(),
-        type: this.type,
-        message: this.message || null,
-        timestamp: moment().toISOString(),
-        username: this.auth.getUsername(),
-        priorityLevel: Object.values(FingerRuleType).indexOf(this.type)
-      }
-    )
     this.db.addRule(
       {
+        uid: this.auth.getUid(),
         id: moment().valueOf().toString(),
         type: this.type,
         message: this.message || null,
