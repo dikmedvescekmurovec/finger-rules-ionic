@@ -22,7 +22,7 @@ export class FingerRuleComponent implements OnInit, AfterViewInit, OnDestroy {
   private isAdmin: boolean;
 
   @Input()
-  canSelect: boolean;
+  canSelect = true;
 
   public isSelected = false;
 
