@@ -24,7 +24,7 @@ export class RuleInputComponent implements OnInit {
       {
         id: moment().valueOf().toString(),
         type: this.type,
-        message: this.message,
+        message: this.message || null,
         timestamp: moment().toISOString(),
         username: this.auth.getUsername(),
         priorityLevel: Object.values(FingerRuleType).indexOf(this.type)
@@ -34,7 +34,7 @@ export class RuleInputComponent implements OnInit {
       {
         id: moment().valueOf().toString(),
         type: this.type,
-        message: this.message,
+        message: this.message || null,
         timestamp: moment().toISOString(),
         username: this.auth.getUsername(),
         priorityLevel: Object.values(FingerRuleType).indexOf(this.type)
@@ -45,7 +45,7 @@ export class RuleInputComponent implements OnInit {
 
   async chooseRuleType() {
     const actionSheet = await this.actionSheetController.create({
-      header: 'Finger Rules',
+      header: 'Choose a Finger Rule',
       buttons: [
         {
           text: 'Funny Remark',
