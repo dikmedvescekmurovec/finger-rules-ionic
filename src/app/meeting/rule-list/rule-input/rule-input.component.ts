@@ -17,9 +17,9 @@ export class RuleInputComponent implements OnInit {
 
   constructor(private auth: AuthService, private db: DatabaseService, private actionSheetController: ActionSheetController) { }
 
-  ngOnInit() {}
+  ngOnInit() { }
 
-  send(){
+  send() {
     console.log(
       {
         id: moment().valueOf().toString(),
@@ -40,43 +40,53 @@ export class RuleInputComponent implements OnInit {
         priorityLevel: Object.values(FingerRuleType).indexOf(this.type)
       }
     );
-    this.message='';
+    this.message = '';
   }
 
   async chooseRuleType() {
     const actionSheet = await this.actionSheetController.create({
       header: 'Finger Rules',
       buttons: [
-      {
-        text: 'Funny Remark',
-        handler: () => {
-          this.type = FingerRuleType.FUNNY_REMARK;
-        }
-      },
-      {
-        text: 'Technical Remark',
-        handler: () => {
-          this.type = FingerRuleType.TECHNICAL;
-        }
-      },
-      {
-        text: 'Topic Too Long',
-        handler: () => {
-          this.type = FingerRuleType.TOO_LONG;
-        }
-      },
-      {
-        text: 'Reply',
-        handler: () => {
-          this.type = FingerRuleType.REPLY;
-        }
-      },
-      {
-        text: 'New Topic',
-        handler: () => {
-          this.type = FingerRuleType.NEW_TOPIC;
-        }
-      }]
+        {
+          text: 'Funny Remark',
+          icon: 'ellipsis-horizontal',
+          cssClass: 'funny-remark',
+          handler: () => {
+            this.type = FingerRuleType.FUNNY_REMARK;
+          }
+        },
+        {
+          text: 'Technical Remark',
+          icon: 'ellipsis-horizontal',
+          cssClass: 'technical-remark',
+          handler: () => {
+            this.type = FingerRuleType.TECHNICAL;
+          }
+        },
+        {
+          text: 'Topic Too Long',
+          icon: 'ellipsis-horizontal',
+          cssClass: 'topic-too-long',
+          handler: () => {
+            this.type = FingerRuleType.TOO_LONG;
+          }
+        },
+        {
+          text: 'Reply',
+          icon: 'ellipsis-horizontal',
+          cssClass: 'reply',
+          handler: () => {
+            this.type = FingerRuleType.REPLY;
+          }
+        },
+        {
+          text: 'New Topic',
+          icon: 'ellipsis-horizontal',
+          cssClass: 'new-topic',
+          handler: () => {
+            this.type = FingerRuleType.NEW_TOPIC;
+          }
+        }]
     });
     await actionSheet.present();
   }
