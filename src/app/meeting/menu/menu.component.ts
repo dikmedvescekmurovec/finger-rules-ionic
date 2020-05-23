@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
-import { ToastController, PopoverController } from '@ionic/angular';
+import { ToastController, PopoverController, ModalController } from '@ionic/angular';
 import { Clipboard } from '@angular/cdk/clipboard';
+import { MembersPage } from 'src/app/members/members.page';
 
 @Component({
   selector: 'app-menu',
@@ -12,7 +13,8 @@ export class MenuComponent implements OnInit {
   constructor(
     private clipboard: Clipboard,
     private toastController: ToastController,
-    private popoverController: PopoverController
+    private popoverController: PopoverController,
+    public modalController: ModalController
   ) { }
 
   ngOnInit() { }
@@ -27,9 +29,12 @@ export class MenuComponent implements OnInit {
     this.popoverController.dismiss();
   }
 
-  public showMenu() {
-    console.log('TODO: Implement');
+  public async showMembers() {
+    const modal = await this.modalController.create({
+      component: MembersPage
+    });
     this.popoverController.dismiss();
+    return await modal.present();
   }
 
 }

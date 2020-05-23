@@ -1,0 +1,40 @@
+<ion-header>
+  <ion-toolbar>
+    <ion-title>Members</ion-title>
+    <ion-buttons slot="primary">
+      <ion-button (click)="dismissModal()">
+        <ion-icon slot="icon-only" name="close"></ion-icon>
+      </ion-button>
+    </ion-buttons>
+  </ion-toolbar>
+</ion-header>
+
+<ion-content fullscreen>
+  <ion-list *ngIf="users$ | async as users; else ghostUsers">
+    <ion-item *ngFor="let user of users">
+      <ion-avatar class="avatar" fxLayout="row" fxLayoutAlign="center center" slot="start">
+        <ion-text>{{ user.username.charAt(0) }}</ion-text>
+      </ion-avatar>
+      <ion-label>
+        <h2>{{ user.username }}</h2>
+      </ion-label>
+    </ion-item>
+  </ion-list>
+  <ng-template #ghostUsers>
+    <ion-list>
+      <ion-item *ngFor="let i of [1,2]">
+        <ion-avatar slot="start">
+          <ion-skeleton-text animated></ion-skeleton-text>
+        </ion-avatar>
+        <ion-label>
+          <h3>
+            <ion-skeleton-text animated style="width: 50%"></ion-skeleton-text>
+          </h3>
+          <p>
+            <ion-skeleton-text animated style="width: 30%"></ion-skeleton-text>
+          </p>
+        </ion-label>
+      </ion-item>
+    </ion-list>
+  </ng-template>
+</ion-content>
