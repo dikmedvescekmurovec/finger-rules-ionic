@@ -6,6 +6,7 @@ import { SelectedRulesService } from 'src/app/selected-rules.service';
 import { DatabaseService } from 'src/app/services/database.service';
 import { ToastController } from '@ionic/angular';
 import { Router } from '@angular/router';
+import { AuthService } from 'src/app/services/auth.service';
 
 @Component({
   selector: 'app-rule-list',
@@ -27,7 +28,8 @@ export class RuleListComponent implements OnInit, OnDestroy {
     private db: DatabaseService,
     private selectedRulesService: SelectedRulesService,
     private toastController: ToastController,
-    private router: Router
+    private router: Router,
+    public auth: AuthService
   ) { }
 
   public selectedRules: FingerRule[] = []

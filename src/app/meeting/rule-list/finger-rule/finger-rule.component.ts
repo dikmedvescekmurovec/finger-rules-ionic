@@ -19,17 +19,20 @@ export class FingerRuleComponent implements OnInit, AfterViewInit, OnDestroy {
   fingerRule: FingerRule;
 
   @Input()
-  private isAdmin: boolean;
+  public isAdmin: boolean;
 
   @Input()
-  canSelect = true;
+  public isOwner: boolean;
+
+  @Input()
+  selectable = true;
 
   public isSelected = false;
 
   @ViewChild('deselected') deselectedRef: ElementRef;
 
   @Input()
-  canDelete = true;
+  deletable = true;
 
   @Output()
   remove: EventEmitter<string> = new EventEmitter();
@@ -37,6 +40,7 @@ export class FingerRuleComponent implements OnInit, AfterViewInit, OnDestroy {
   public humanizedTimestamp: string;
 
   ngOnInit() {
+    console.log(this.fingerRule);
     if (this.fingerRule.timestamp) {
       this.humanizedTimestamp = moment(this.fingerRule.timestamp).fromNow();
     }
@@ -67,16 +71,20 @@ export class FingerRuleComponent implements OnInit, AfterViewInit, OnDestroy {
   }
 
   selectRule() {
-    if (this.canSelect) {
+    if (this.selectable && this.canDelete()) {
       this.selectedRulesService.selectRule(this.fingerRule)
       this.firstDraw = false;
     }
   }
 
   deselectRule() {
-    if (this.canSelect) {
+    if (this.selectable && this.canDelete()) {
       this.selectedRulesService.deselectRule(this.fingerRule)
     }
+  }
+
+  canDelete() {
+    return (this.isAdmin || this.isOwner) && this.deletable;
   }
 
 }

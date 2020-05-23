@@ -21,7 +21,7 @@
           </div>
         </div>
       </div>
-      <ion-icon *ngIf="canDelete" name="close-outline" (click)="removeRule()">
+      <ion-icon *ngIf="(isAdmin || isOwner) && canDelete" name="close-outline" (click)="removeRule()">
       </ion-icon>
     </div>
     <ion-text *ngIf="fingerRule.message" class="ion-margin-top">{{fingerRule.message}}</ion-text>

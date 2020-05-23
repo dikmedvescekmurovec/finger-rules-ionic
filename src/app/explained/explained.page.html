@@ -21,7 +21,7 @@
     <div fxFlex="auto" class="ion-margin-top">
       <ion-list>
         <ng-container *ngFor="let fingerRule of ruleListExplained">
-          <app-finger-rule [canSelect]="false" [canDelete]="false" [fingerRule]="fingerRule"></app-finger-rule>
+          <app-finger-rule [selectable]="false" [deletable]="false" [fingerRule]="fingerRule"></app-finger-rule>
         </ng-container>
       </ion-list>
     </div>
