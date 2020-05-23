@@ -21,6 +21,9 @@ export class FingerRuleComponent implements OnInit, AfterViewInit, OnDestroy {
   @Input()
   private isAdmin: boolean;
 
+  @Input()
+  canSelect: boolean;
+
   public isSelected = false;
 
   @ViewChild('deselected') deselectedRef: ElementRef;
@@ -49,7 +52,6 @@ export class FingerRuleComponent implements OnInit, AfterViewInit, OnDestroy {
   }
 
   ngOnDestroy() {
-    console.log(`rule destroyed`, this.fingerRule);
     setTimeout(() => {
       this.selectedRulesService.deselectRule(this.fingerRule);
     }, 0);
@@ -65,12 +67,16 @@ export class FingerRuleComponent implements OnInit, AfterViewInit, OnDestroy {
   }
 
   selectRule() {
-    this.selectedRulesService.selectRule(this.fingerRule)
-    this.firstDraw = false;
+    if (this.canSelect) {
+      this.selectedRulesService.selectRule(this.fingerRule)
+      this.firstDraw = false;
+    }
   }
 
   deselectRule() {
-    this.selectedRulesService.deselectRule(this.fingerRule)
+    if (this.canSelect) {
+      this.selectedRulesService.deselectRule(this.fingerRule)
+    }
   }
 
 }
