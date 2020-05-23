@@ -1,8 +1,9 @@
 ion-item {
   flex: 1;
   border-radius: 100rem;
-
+  --ion-item-background: var(--ion-color-light);
   --full-highlight-height: 0;
+  --border-width: 0;
 }
 
 ion-icon {
