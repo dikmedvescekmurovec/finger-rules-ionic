@@ -1,4 +1,4 @@
-<form (ngSubmit)="startMeeting()" [formGroup]="entryForm" class="ion-margin-top">
+<form (keyup.enter)="startMeeting()" (ngSubmit)="startMeeting()" [formGroup]="entryForm" class="ion-margin-top">
   <ion-item>
     <ion-label position="floating">Name</ion-label>
     <ion-input type="text" formControlName="username"></ion-input>
