@@ -1,24 +1,27 @@
+<ion-header>
+  <ion-toolbar>
+    <ion-buttons slot="start">
+      <ion-button (click)="back()">
+        <ion-icon slot="icon-only" name="arrow-back-outline"></ion-icon>
+      </ion-button>
+    </ion-buttons>
+  </ion-toolbar>
+</ion-header>
 <div class="page-wrapper">
-  <ion-header>
-    <ion-toolbar>
-      <ion-buttons slot="start">
-        <ion-button (click)="back()">
-          <ion-icon slot="icon-only" name="arrow-back-outline"></ion-icon>
-        </ion-button>
-      </ion-buttons>
-    </ion-toolbar>
-  </ion-header>
-
   <ion-content>
     <div fxLayout="column" class="ion-margin">
       <ion-text>
         <h1>Finger Rules Explained</h1>
       </ion-text>
-      <ion-text color="primary" class="ion-margin-top">Finger rules are used to prevent unnecessary interruptions in
-        meetings. They are
-        automatically sorted by their priority orders so that any questions or replies are handled in a timely manner.
+      <ion-text class="ion-margin-top">Finger rules are used to prevent unnecessary interruptions in
+        meetings.
       </ion-text>
-
+      <ion-text class="ion-margin-top">
+        Use them while somebody else is speaking so they are notified. They'll have time to finish their thought and
+        will give you the word after. Speaking requests are automatically sorted by their priority orders so that any
+        questions or
+        replies are handled in a timely manner.
+      </ion-text>
       <div fxFlex="auto" class="ion-margin-top">
         <ion-list>
           <ng-container *ngFor="let fingerRule of ruleListExplained">
