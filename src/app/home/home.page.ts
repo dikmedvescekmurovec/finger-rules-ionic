@@ -14,11 +14,4 @@ export class HomePage {
   ) {
   }
 
-  /**
-   * Go to help page
-   */
-  helpPage() {
-    this.router.navigateByUrl('help');
-  }
-
 }

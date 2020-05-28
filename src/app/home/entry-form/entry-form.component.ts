@@ -70,4 +70,11 @@ export class EntryFormComponent implements OnInit {
     this.router.navigate(['meeting', meetingID]);
   }
 
+  /**
+ * Go to help page
+ */
+  helpPage() {
+    this.router.navigateByUrl('help');
+  }
+
 }
