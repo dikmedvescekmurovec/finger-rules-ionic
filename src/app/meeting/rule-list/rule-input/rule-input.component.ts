@@ -48,7 +48,7 @@ export class RuleInputComponent implements OnInit {
     });
     await popover.present();
 
-    const { data } = await popover.onDidDismiss();
+    const { data } = await popover.onWillDismiss();
 
     this.type = data as FingerRuleType;
   }
