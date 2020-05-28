@@ -35,10 +35,17 @@ ion-text {
   height: 100vh;
 }
 
-body {
-  width: 1200px;
+ion-header {
+  max-width: 1200px;
+  margin: auto;
+}
+
+.page-wrapper {
+  max-width: 1200px;
   margin: auto;
   position: relative;
+  height: 100%;
+  width: 100%;
 }
 
 ion-action-sheet {

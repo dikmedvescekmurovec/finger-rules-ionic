@@ -1,18 +1,20 @@
-<ion-content [fullscreen]="true">
-  <div class="height-100 ion-padding" fxLayout="column" fxLayoutAlign="space-between center">
-    <div fxFlex="1 1 auto" fxLayout.gt-sm="row" fxLayout.lt-md="column" fxLayoutAlign="center center" class="wrapper">
-      <div class="ion-padding">
-        <ion-text>
-          <h1>Facilitate meetings with simple and clear cut rules.</h1>
-        </ion-text>
-        <ion-text color="primary">Pose questions or reply to arguments
-          in turn and without interrupting the speaker during meetings.</ion-text>
-        <app-entry-form></app-entry-form>
+<div class="page-wrapper">
+  <ion-content [fullscreen]="true">
+    <div class="height-100 ion-padding" fxLayout="column" fxLayoutAlign="space-between center">
+      <div fxFlex="1 1 auto" fxLayout.gt-sm="row" fxLayout.lt-md="column" fxLayoutAlign="center center">
+        <div class="ion-padding">
+          <ion-text>
+            <h1>Facilitate meetings with simple and clear cut rules.</h1>
+          </ion-text>
+          <ion-text color="primary">Pose questions or reply to arguments
+            in turn and without interrupting the speaker during meetings.</ion-text>
+          <app-entry-form></app-entry-form>
+        </div>
+        <div class="ion-padding">
+          <img src="assets/home-illustration.png">
+        </div>
       </div>
-      <div class="ion-padding">
-        <img src="assets/home-illustration.png">
-      </div>
+      <ion-button color="medium" fill="clear" expand="full" (click)="helpPage()">Explain Finger Rules</ion-button>
     </div>
-    <ion-button color="medium" fill="clear" expand="full" (click)="helpPage()">Explain Finger Rules</ion-button>
-  </div>
-</ion-content>
+  </ion-content>
+</div>
