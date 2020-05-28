@@ -7,36 +7,37 @@
       <app-members-list></app-members-list>
     </div>
 
-    <ion-list fxFlex="1 1 auto" *ngIf="fingerRules && fingerRules.length > 0">
-      <ng-container *ngFor="let fingerRule of fingerRules; trackBy: trackByFn">
-        <app-finger-rule [isAdmin]="isAdmin" [isOwner]="auth.getUid() === fingerRule.uid" [fingerRule]="fingerRule">
-        </app-finger-rule>
-      </ng-container>
-    </ion-list>
-
-    <app-empty-rule-list fxFlex="1 1 auto" *ngIf="fingerRules && fingerRules.length === 0 && exists">
-    </app-empty-rule-list>
-
-    <ng-container *ngIf="!fingerRules || !exists">
-      <ion-list fxFlex="1 1 auto">
-        <ion-item *ngFor="let i of [1,2,3]">
-          <ion-avatar slot="start">
-            <ion-skeleton-text animated></ion-skeleton-text>
-          </ion-avatar>
-          <ion-label>
-            <h3>
-              <ion-skeleton-text animated style="width: 50%"></ion-skeleton-text>
-            </h3>
-            <p>
-              <ion-skeleton-text animated style="width: 30%"></ion-skeleton-text>
-            </p>
-          </ion-label>
-        </ion-item>
+    <div fxLayout="column" fxFlex="1 1 auto">
+      <ion-list fxFlex="1 1 auto" *ngIf="fingerRules && fingerRules.length > 0">
+        <ng-container *ngFor="let fingerRule of fingerRules; trackBy: trackByFn">
+          <app-finger-rule [isAdmin]="isAdmin" [isOwner]="auth.getUid() === fingerRule.uid" [fingerRule]="fingerRule">
+          </app-finger-rule>
+        </ng-container>
       </ion-list>
-    </ng-container>
-  </div>
 
-  <div fxFlex="nogrow">
-    <app-rule-input></app-rule-input>
+      <app-empty-rule-list fxFlex="1 1 auto" *ngIf="fingerRules && fingerRules.length === 0 && exists">
+      </app-empty-rule-list>
+
+      <ng-container *ngIf="!fingerRules || !exists">
+        <ion-list fxFlex="1 1 auto">
+          <ion-item *ngFor="let i of [1,2,3]">
+            <ion-avatar slot="start">
+              <ion-skeleton-text animated></ion-skeleton-text>
+            </ion-avatar>
+            <ion-label>
+              <h3>
+                <ion-skeleton-text animated style="width: 50%"></ion-skeleton-text>
+              </h3>
+              <p>
+                <ion-skeleton-text animated style="width: 30%"></ion-skeleton-text>
+              </p>
+            </ion-label>
+          </ion-item>
+        </ion-list>
+      </ng-container>
+      <div fxFlex="nogrow">
+        <app-rule-input></app-rule-input>
+      </div>
+    </div>
   </div>
 </div>
