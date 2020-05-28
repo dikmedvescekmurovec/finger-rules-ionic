@@ -1,16 +1,20 @@
 <div fxLayout="column" class="page-wrapper">
-  <div fxFlex="auto" class="list-wrapper">
-    <ion-list *ngIf="fingerRules && fingerRules.length > 0">
+  <div fxFlex="auto" class="list-wrapper" fxLayout="row">
+    <div class="temp" fxFlex="1 1 33%">
+
+    </div>
+    <ion-list fxFlex="1 1 auto" *ngIf="fingerRules && fingerRules.length > 0">
       <ng-container *ngFor="let fingerRule of fingerRules; trackBy: trackByFn">
         <app-finger-rule [isAdmin]="isAdmin" [isOwner]="auth.getUid() === fingerRule.uid" [fingerRule]="fingerRule">
         </app-finger-rule>
       </ng-container>
     </ion-list>
 
-    <app-empty-rule-list fxFill *ngIf="fingerRules && fingerRules.length === 0 && exists"></app-empty-rule-list>
+    <app-empty-rule-list fxFlex="1 1 auto" *ngIf="fingerRules && fingerRules.length === 0 && exists">
+    </app-empty-rule-list>
 
     <ng-container *ngIf="!fingerRules || !exists">
-      <ion-list>
+      <ion-list fxFlex="1 1 auto">
         <ion-item *ngFor="let i of [1,2,3]">
           <ion-avatar slot="start">
             <ion-skeleton-text animated></ion-skeleton-text>
