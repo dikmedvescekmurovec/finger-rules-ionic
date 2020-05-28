@@ -35,6 +35,12 @@ ion-text {
   height: 100vh;
 }
 
+body {
+  width: 800px;
+  margin: auto;
+  position: relative;
+}
+
 ion-action-sheet {
   .funny-remark {
     ion-icon {
