@@ -2,10 +2,29 @@
   overflow: auto;
 }
 
-.temp {
-  background-color: red;
+.meeting-members {
+  border-bottom-left-radius: 1rem;
+  border-bottom-right-radius: 1rem;
+  .title {
+    padding-top: 1.5rem;
+  }
 }
 
 ion-list {
   overflow: auto;
+}
+
+@media (prefers-color-scheme: light) {
+  .meeting-members {
+    &, ion-item-divider {
+      background: var(--ion-color-light);
+      --ion-item-background: var(--ion-color-light);
+    }
+  }
+}
+
+@media (prefers-color-scheme: dark) {
+  .meeting-members, ion-item-divider {
+    background: var(--ion-tab-bar-background);
+  }
 }

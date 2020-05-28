@@ -1,8 +1,12 @@
 <div fxLayout="column" class="page-wrapper">
   <div fxFlex="auto" class="list-wrapper" fxLayout="row">
-    <div class="temp" fxHide.lt-md="true" fxFlex="1 1 33%">
-
+    <div fxHide.lt-md="true" class="meeting-members" fxFlex="1 1 33%">
+      <ion-title class="title">Members</ion-title>
+      <ion-item-divider>
+      </ion-item-divider>
+      <app-members-list></app-members-list>
     </div>
+
     <ion-list fxFlex="1 1 auto" *ngIf="fingerRules && fingerRules.length > 0">
       <ng-container *ngFor="let fingerRule of fingerRules; trackBy: trackByFn">
         <app-finger-rule [isAdmin]="isAdmin" [isOwner]="auth.getUid() === fingerRule.uid" [fingerRule]="fingerRule">

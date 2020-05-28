@@ -11,6 +11,7 @@ import { FingerRuleComponent } from './rule-list/finger-rule/finger-rule.compone
 import { RuleListComponent } from './rule-list/rule-list.component';
 import { ClipboardModule } from '@angular/cdk/clipboard';
 import { RuleInputComponent } from './rule-list/rule-input/rule-input.component';
+import { MembersListComponent } from '../members-list/members-list.component';
 
 @NgModule({
   imports: [
@@ -27,7 +28,8 @@ import { RuleInputComponent } from './rule-list/rule-input/rule-input.component'
     FingerRuleComponent,
     KebabCasePipe,
     RuleInputComponent,
-    EmptyRuleListComponent
+    EmptyRuleListComponent,
+    MembersListComponent
   ]
 })
 export class MeetingPageModule { }
