@@ -12,7 +12,11 @@
         </ng-template>
       </ion-buttons>
       <div fxLayout="column" *ngIf="selectedRulesService.isEmpty(); else selectedRulesText">
-        <ion-text class="ion-text-center" *ngIf="meetingName; else ghostMeetingName">{{meetingName}}</ion-text>
+        <div fxLayout="row" fxLayoutAlign="center center" *ngIf="meetingName; else ghostMeetingName">
+          <ion-text class="ion-text-center">{{meetingName}}
+          </ion-text>
+          <ion-badge color="secondary">PRO</ion-badge>
+        </div>
         <ng-template #ghostMeetingName>
           <ion-skeleton-text *ngIf="!meetingName" animated [ngStyle]="{'width': '100%', 'height': '1rem'}">
           </ion-skeleton-text>
