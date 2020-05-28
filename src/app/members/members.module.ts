@@ -8,6 +8,7 @@ import { MembersPageRoutingModule } from './members-routing.module';
 
 import { MembersPage } from './members.page';
 import { FlexLayoutModule } from '@angular/flex-layout';
+import { MembersListComponent } from '../members-list/members-list.component';
 
 @NgModule({
   imports: [
@@ -17,6 +18,6 @@ import { FlexLayoutModule } from '@angular/flex-layout';
     IonicModule,
     MembersPageRoutingModule
   ],
-  declarations: [MembersPage]
+  declarations: [MembersPage, MembersListComponent]
 })
 export class MembersPageModule { }

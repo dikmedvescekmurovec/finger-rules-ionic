@@ -11,16 +11,11 @@ import { User } from '../models/user.model';
 })
 export class MembersPage implements OnInit {
 
-  public users$: Observable<User[]>;
-
   constructor(
-    private modalController: ModalController,
-    private db: DatabaseService
+    private modalController: ModalController
   ) { }
 
-  ngOnInit() {
-    this.users$ = this.db.getUsers();
-  }
+  ngOnInit() { }
 
   public dismissModal() {
     this.modalController.dismiss();
