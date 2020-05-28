@@ -3,7 +3,8 @@ import { FingerRuleType } from 'src/app/models/finger-rule.model';
 import { AuthService } from 'src/app/services/auth.service';
 import { DatabaseService } from 'src/app/services/database.service';
 import * as moment from 'moment';
-import { MenuController, ActionSheetController } from '@ionic/angular';
+import { PopoverController } from '@ionic/angular';
+import { FingerRuleMenuComponent } from '../../finger-rule-menu/finger-rule-menu.component';
 
 @Component({
   selector: 'app-rule-input',
@@ -15,7 +16,11 @@ export class RuleInputComponent implements OnInit {
   public type = FingerRuleType.NEW_TOPIC;
   public message: string;
 
-  constructor(private auth: AuthService, private db: DatabaseService, private actionSheetController: ActionSheetController) { }
+  constructor(
+    private auth: AuthService,
+    private db: DatabaseService,
+    public popoverController: PopoverController
+  ) { }
 
   ngOnInit() {
   }
@@ -35,52 +40,17 @@ export class RuleInputComponent implements OnInit {
     this.message = '';
   }
 
-  async chooseRuleType() {
-    const actionSheet = await this.actionSheetController.create({
-      header: 'Choose a Finger Rule',
-      buttons: [
-        {
-          text: 'Funny Remark',
-          icon: 'ellipsis-horizontal',
-          cssClass: 'funny-remark',
-          handler: () => {
-            this.type = FingerRuleType.FUNNY_REMARK;
-          }
-        },
-        {
-          text: 'Technical Remark',
-          icon: 'ellipsis-horizontal',
-          cssClass: 'technical-remark',
-          handler: () => {
-            this.type = FingerRuleType.TECHNICAL;
-          }
-        },
-        {
-          text: 'Topic Too Long',
-          icon: 'ellipsis-horizontal',
-          cssClass: 'topic-too-long',
-          handler: () => {
-            this.type = FingerRuleType.TOO_LONG;
-          }
-        },
-        {
-          text: 'Reply',
-          icon: 'ellipsis-horizontal',
-          cssClass: 'reply',
-          handler: () => {
-            this.type = FingerRuleType.REPLY;
-          }
-        },
-        {
-          text: 'New Topic',
-          icon: 'ellipsis-horizontal',
-          cssClass: 'new-topic',
-          handler: () => {
-            this.type = FingerRuleType.NEW_TOPIC;
-          }
-        }]
+  async chooseRuleType(event: any) {
+    const popover = await this.popoverController.create({
+      component: FingerRuleMenuComponent,
+      event,
+      translucent: true
     });
-    await actionSheet.present();
+    await popover.present();
+
+    const { data } = await popover.onDidDismiss();
+
+    this.type = data as FingerRuleType;
   }
 
 }

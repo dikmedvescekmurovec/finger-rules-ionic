@@ -21,11 +21,13 @@ import { RuleInputComponent } from './rule-list/rule-input/rule-input.component'
     FlexLayoutModule,
     ClipboardModule
   ],
-  declarations: [MeetingPage,
+  declarations: [
+    MeetingPage,
     RuleListComponent,
     FingerRuleComponent,
     KebabCasePipe,
     RuleInputComponent,
-    EmptyRuleListComponent]
+    EmptyRuleListComponent
+  ]
 })
 export class MeetingPageModule { }

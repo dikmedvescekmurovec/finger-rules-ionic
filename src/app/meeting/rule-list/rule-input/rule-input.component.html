@@ -1,6 +1,6 @@
 <form (ngSubmit)="send()" fxLayout="row" class="ion-margin-top ion-margin-bottom">
   <ion-buttons>
-    <ion-button (click)="chooseRuleType()">
+    <ion-button (click)="chooseRuleType($event)">
       <ion-icon slot="icon-only" src="assets/icon/{{type | kebabCase}}.svg"></ion-icon>
     </ion-button>
   </ion-buttons>

@@ -1,0 +1,34 @@
+<ion-content padding>
+  <ion-list>
+    <ion-item button (click)="selectFingerRuleType(fingerRuleType.FUNNY_REMARK)">
+      <ion-icon slot="start" src="assets/icon/funny-remark.svg"></ion-icon>
+      <ion-label>
+        Funny remark
+      </ion-label>
+    </ion-item>
+    <ion-item button (click)="selectFingerRuleType(fingerRuleType.REPLY)">
+      <ion-icon slot="start" src="assets/icon/reply.svg"></ion-icon>
+      <ion-label>
+        Reply
+      </ion-label>
+    </ion-item>
+    <ion-item button (click)="selectFingerRuleType(fingerRuleType.NEW_TOPIC)">
+      <ion-icon slot="start" src="assets/icon/new-topic.svg"></ion-icon>
+      <ion-label>
+        New topic
+      </ion-label>
+    </ion-item>
+    <ion-item button (click)="selectFingerRuleType(fingerRuleType.TOO_LONG)">
+      <ion-icon slot="start" src="assets/icon/topic-too-long.svg"></ion-icon>
+      <ion-label>
+        Topic too long
+      </ion-label>
+    </ion-item>
+    <ion-item button (click)="selectFingerRuleType(fingerRuleType.TECHNICAL)">
+      <ion-icon slot="start" src="assets/icon/technical-remark.svg"></ion-icon>
+      <ion-label>
+        Technical remark
+      </ion-label>
+    </ion-item>
+  </ion-list>
+</ion-content>
