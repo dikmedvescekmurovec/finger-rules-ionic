@@ -1,7 +1,3 @@
-.list-wrapper {
-  overflow: auto;
-}
-
 .meeting-members {
   border-bottom-left-radius: 1rem;
   border-bottom-right-radius: 1rem;
@@ -10,7 +6,7 @@
   }
 }
 
-ion-list {
+ion-list, .meeting-members, .list-wrapper {
   overflow: auto;
 }
 
