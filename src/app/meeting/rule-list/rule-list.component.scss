@@ -11,6 +11,7 @@ ion-list,
 .meeting-members,
 .list-wrapper {
   overflow: auto;
+  --ion-item-background: transparent;
 }
 
 @media (prefers-color-scheme: light) {
