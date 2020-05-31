@@ -1,5 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
+import { AnalyticsService } from 'src/app/services/analytics.service';
 
 @Component({
   selector: 'app-empty-rule-list',
@@ -8,14 +9,15 @@ import { Router } from '@angular/router';
 })
 export class EmptyRuleListComponent implements OnInit {
 
-  constructor(private router: Router) { }
+  constructor(private router: Router, private analytics: AnalyticsService) { }
 
   ngOnInit() { }
 
   /**
    * Go to help page
    */
-  helpPage() {
-    this.router.navigateByUrl('help', {state: {cameFromMeeting: true}});
+  public helpPage() {
+    this.analytics.onHelpClicked();
+    this.router.navigate(['help'], { state: { cameFromMeeting: true } });
   }
 }

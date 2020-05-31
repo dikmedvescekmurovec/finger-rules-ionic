@@ -4,6 +4,7 @@ import { FingerRule } from 'src/app/models/finger-rule.model';
 import { SelectedRulesService } from 'src/app/selected-rules.service';
 import { DatabaseService } from 'src/app/services/database.service';
 import { Subscription, interval } from 'rxjs';
+import { AnalyticsService } from 'src/app/services/analytics.service';
 
 @Component({
   selector: 'app-finger-rule',
@@ -14,7 +15,8 @@ export class FingerRuleComponent implements OnInit, AfterViewInit, OnDestroy {
 
   constructor(
     private selectedRulesService: SelectedRulesService,
-    private db: DatabaseService
+    private db: DatabaseService,
+    private analytics: AnalyticsService
   ) { }
 
   public firstDraw = true;
@@ -75,20 +77,23 @@ export class FingerRuleComponent implements OnInit, AfterViewInit, OnDestroy {
    */
   removeRule() {
     this.selectedRulesService.deselectRule(this.fingerRule);
+    this.analytics.onFingerRuleDeleted(this.fingerRule);
     document.querySelector(`#${CSS.escape(this.fingerRule.id)}`).className += ' fade-out'
     setTimeout(() => this.db.removeRule(this.fingerRule.id), 200);
   }
 
   selectRule() {
     if (this.canSelect()) {
-      this.selectedRulesService.selectRule(this.fingerRule)
+      this.selectedRulesService.selectRule(this.fingerRule);
       this.firstDraw = false;
+      this.analytics.onFingerRuleSelected();
     }
   }
 
   deselectRule() {
     if (this.canSelect()) {
-      this.selectedRulesService.deselectRule(this.fingerRule)
+      this.selectedRulesService.deselectRule(this.fingerRule);
+      this.analytics.onFingerRuleDeselected();
     }
   }
 

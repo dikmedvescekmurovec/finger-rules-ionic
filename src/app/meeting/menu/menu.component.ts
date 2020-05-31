@@ -2,6 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { ToastController, PopoverController, ModalController } from '@ionic/angular';
 import { Clipboard } from '@angular/cdk/clipboard';
 import { MembersPage } from 'src/app/members/members.page';
+import { AnalyticsService } from 'src/app/services/analytics.service';
 
 @Component({
   selector: 'app-menu',
@@ -14,7 +15,8 @@ export class MenuComponent implements OnInit {
     private clipboard: Clipboard,
     private toastController: ToastController,
     private popoverController: PopoverController,
-    public modalController: ModalController
+    public modalController: ModalController,
+    private analytics: AnalyticsService
   ) { }
 
   ngOnInit() { }
@@ -26,6 +28,9 @@ export class MenuComponent implements OnInit {
       duration: 5000
     });
     toast.present();
+
+    this.analytics.onShareClicked();
+
     this.popoverController.dismiss();
   }
 
@@ -33,6 +38,9 @@ export class MenuComponent implements OnInit {
     const modal = await this.modalController.create({
       component: MembersPage
     });
+
+    this.analytics.onShowMembersClicked();
+
     this.popoverController.dismiss();
     return await modal.present();
   }

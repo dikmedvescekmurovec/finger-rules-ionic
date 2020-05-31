@@ -42,6 +42,10 @@ export class DatabaseService {
     this.meetingID = meetingID;
   }
 
+  public getMeetingID(): string {
+    return this.meetingID;
+  }
+
   public getIsAdmin(): Observable<boolean> {
     return this.db.object<string>(`meetings/${this.meetingID}/admin`).valueChanges().pipe(
       map(admin => admin === this.auth.getUid())

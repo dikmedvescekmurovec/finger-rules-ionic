@@ -4,6 +4,7 @@ import { User } from '../models/user.model';
 import { DatabaseService } from '../services/database.service';
 import { Clipboard } from '@angular/cdk/clipboard';
 import { ToastController } from '@ionic/angular';
+import { AnalyticsService } from '../services/analytics.service';
 
 @Component({
   selector: 'app-members-list',
@@ -17,7 +18,8 @@ export class MembersListComponent implements OnInit {
   constructor(
     private db: DatabaseService,
     private clipboard: Clipboard,
-    private toastController: ToastController
+    private toastController: ToastController,
+    private analytics: AnalyticsService
   ) { }
 
   ngOnInit() {
@@ -31,6 +33,8 @@ export class MembersListComponent implements OnInit {
       duration: 5000
     });
     toast.present();
+
+    this.analytics.onShareClicked();
   }
 
 }

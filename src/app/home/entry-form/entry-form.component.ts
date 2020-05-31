@@ -3,6 +3,7 @@ import { FormGroup, FormBuilder, Validators } from '@angular/forms';
 import { Router, ActivatedRoute, ParamMap } from '@angular/router';
 import { AuthService } from 'src/app/services/auth.service';
 import { DatabaseService } from 'src/app/services/database.service';
+import { AnalyticsService } from 'src/app/services/analytics.service';
 
 @Component({
   selector: 'app-entry-form',
@@ -19,7 +20,8 @@ export class EntryFormComponent implements OnInit {
     private router: Router,
     private activatedRoute: ActivatedRoute,
     private auth: AuthService,
-    private db: DatabaseService
+    private db: DatabaseService,
+    private analytics: AnalyticsService
   ) {
     this.entryForm = this.formBuilder.group({
       username: ['', Validators.required],
@@ -49,6 +51,8 @@ export class EntryFormComponent implements OnInit {
   switchView() {
     this.entryForm.get('meeting').reset();
     this.doesMeetingExist = !this.doesMeetingExist;
+
+    this.analytics.onSwitchedView(this.doesMeetingExist);
   }
 
   /**
@@ -61,20 +65,23 @@ export class EntryFormComponent implements OnInit {
 
     if (this.doesMeetingExist) {
       meetingID = this.entryForm.get('meeting').value;
+      this.analytics.onMeetingJoinClicked();
     } else {
       const meetingName = this.entryForm.get('meeting').value;
       meetingID = this.db.generateMeetingID(meetingName);
       await this.db.createMeeting(meetingID, meetingName);
+      this.analytics.onMeetingStartClicked();
     }
 
     this.router.navigate(['meeting', meetingID]);
   }
 
   /**
- * Go to help page
- */
-  helpPage() {
-    this.router.navigateByUrl('help');
+   * Go to help page
+   */
+  public helpPage() {
+    this.analytics.onHelpClicked();
+    this.router.navigate(['help']);
   }
 
 }

@@ -4,6 +4,7 @@ import { SelectedRulesService } from '../selected-rules.service';
 import { DatabaseService } from '../services/database.service';
 import { MenuComponent } from './menu/menu.component';
 import { PopoverController } from '@ionic/angular';
+import { AnalyticsService } from '../services/analytics.service';
 
 @Component({
   selector: 'app-meeting',
@@ -21,7 +22,8 @@ export class MeetingPage implements OnInit {
     private db: DatabaseService,
     public selectedRulesService: SelectedRulesService,
     private router: Router,
-    public popoverController: PopoverController
+    public popoverController: PopoverController,
+    private analytics: AnalyticsService
   ) { }
 
   ngOnInit() {
@@ -33,11 +35,12 @@ export class MeetingPage implements OnInit {
         this.db.getMeetingName(this.meetingID).subscribe(meetingName => this.meetingName = meetingName);
         this.exists = true;
       }
+      this.analytics.onMeetingJoined(exists);
     })
   }
 
   public back() {
-    this.router.navigateByUrl('start');
+    this.router.navigate(['/']);
   }
 
   public async createPopover(event: any) {
@@ -46,6 +49,9 @@ export class MeetingPage implements OnInit {
       event,
       translucent: true
     });
+
+    this.analytics.onMenuClicked();
+
     return await popover.present();
   }
 
