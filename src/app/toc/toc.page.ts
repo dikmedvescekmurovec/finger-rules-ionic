@@ -1,5 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
+import { SEOService } from '../services/seo.service';
 
 @Component({
   selector: 'app-toc',
@@ -8,13 +9,17 @@ import { Router } from '@angular/router';
 })
 export class TocPage implements OnInit {
 
-  constructor(private router: Router) { }
+  constructor(private router: Router, private seo: SEOService) { }
 
   ngOnInit() {
   }
 
   public back() {
     this.router.navigate(['/help']);
+  }
+
+  ionViewWillEnter() {
+    this.seo.setTitle('Finger Rules Terms and Conditions');
   }
 
 }
