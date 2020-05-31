@@ -14,7 +14,7 @@ export class PrivacyPage implements OnInit {
   }
 
   public back() {
-    this.router.navigate(['/']);
+    this.router.navigate(['/help']);
   }
 
 }

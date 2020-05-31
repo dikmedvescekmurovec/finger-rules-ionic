@@ -75,4 +75,13 @@ export class ExplainedPage implements OnInit {
     }
   }
 
+  public toc() {
+    this.router.navigateByUrl('terms');
+  }
+
+  public privacy() {
+    this.router.navigateByUrl('privacy');
+    console.log('lolwut');
+  }
+
 }

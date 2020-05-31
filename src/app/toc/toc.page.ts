@@ -14,7 +14,7 @@ export class TocPage implements OnInit {
   }
 
   public back() {
-    this.router.navigate(['/']);
+    this.router.navigate(['/help']);
   }
 
 }
