@@ -15,10 +15,12 @@ import { EntryFormComponent } from './entry-form/entry-form.component';
     IonicModule,
     HomePageRoutingModule,
     FlexLayoutModule,
-    FormsModule, 
+    FormsModule,
     ReactiveFormsModule
   ],
-  declarations: [HomePage,
-    EntryFormComponent]
+  declarations: [
+    HomePage,
+    EntryFormComponent
+  ]
 })
 export class HomePageModule { }

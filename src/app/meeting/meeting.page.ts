@@ -5,6 +5,7 @@ import { DatabaseService } from '../services/database.service';
 import { MenuComponent } from './menu/menu.component';
 import { PopoverController } from '@ionic/angular';
 import { AnalyticsService } from '../services/analytics.service';
+import { SEOService } from '../services/seo.service';
 
 @Component({
   selector: 'app-meeting',
@@ -23,11 +24,15 @@ export class MeetingPage implements OnInit {
     public selectedRulesService: SelectedRulesService,
     private router: Router,
     public popoverController: PopoverController,
-    private analytics: AnalyticsService
+    private analytics: AnalyticsService,
+    private seo: SEOService
   ) { }
 
   ngOnInit() {
     this.meetingID = this.activatedRoute.snapshot.paramMap.get('meetingID');
+
+    this.seo.setTitle(`Finger Rules - ${this.meetingID}`);
+
     this.db.setMeetingID(this.meetingID);
     this.db.doesMeetingExist(this.meetingID).subscribe(exists => {
       if (exists) {

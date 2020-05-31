@@ -2,6 +2,7 @@ import { Location } from '@angular/common';
 import { Component, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
 import { FingerRule, FingerRuleType } from '../models/finger-rule.model';
+import { SEOService } from '../services/seo.service';
 
 @Component({
   selector: 'app-explained',
@@ -12,7 +13,11 @@ export class ExplainedPage implements OnInit {
 
   cameFromMeeting: boolean;
 
-  constructor(private location: Location, private router: Router) {
+  constructor(
+    private location: Location,
+    private router: Router,
+    private seo: SEOService
+  ) {
   }
 
   public ruleListExplained: FingerRule[] = [
@@ -59,7 +64,7 @@ export class ExplainedPage implements OnInit {
   ]
 
   ngOnInit() {
-    console.log(history.state);
+    this.seo.setTitle('Finger Rules Explained');
   }
 
   back() {

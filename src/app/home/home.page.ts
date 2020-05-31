@@ -1,5 +1,5 @@
 import { Component } from '@angular/core';
-import { Router } from '@angular/router';
+import { SEOService } from '../services/seo.service';
 
 @Component({
   selector: 'app-home',
@@ -9,9 +9,10 @@ import { Router } from '@angular/router';
 
 export class HomePage {
 
-  constructor(
-    private router: Router
-  ) {
+  constructor(private seo: SEOService) { }
+
+  ionViewWillEnter() {
+    this.seo.setTitle('Finger Rules');
   }
 
 }
