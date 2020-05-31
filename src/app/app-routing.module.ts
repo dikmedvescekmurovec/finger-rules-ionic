@@ -17,14 +17,17 @@ const routes: Routes = [
     loadChildren: () => import('./explained/explained.module').then(m => m.ExplainedPageModule)
   },
   {
+    path: 'members',
+    loadChildren: () => import('./members/members.module').then(m => m.MembersPageModule)
+  },
+  {
+    path: 'terms',
+    loadChildren: () => import('./toc/toc.module').then(m => m.TocPageModule)
+  },
+  {
     path: '**',
     redirectTo: ''
-  },  {
-    path: 'members',
-    loadChildren: () => import('./members/members.module').then( m => m.MembersPageModule)
-  },
-
-
+  }
 ];
 
 @NgModule({
