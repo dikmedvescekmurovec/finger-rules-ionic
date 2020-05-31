@@ -25,9 +25,15 @@ const routes: Routes = [
     loadChildren: () => import('./toc/toc.module').then(m => m.TocPageModule)
   },
   {
+    path: 'privacy',
+    loadChildren: () => import('./privacy/privacy.module').then(m => m.PrivacyPageModule)
+  },
+  {
     path: '**',
     redirectTo: ''
   }
+
+
 ];
 
 @NgModule({
