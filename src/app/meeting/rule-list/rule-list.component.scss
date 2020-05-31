@@ -13,11 +13,13 @@ ion-list,
   overflow: auto;
 }
 
-.meeting-members {
-  &,
-  ion-item-divider {
-    background: var(--ion-color-light);
-    --ion-item-background: var(--ion-color-light);
+@media (prefers-color-scheme: light) {
+  .meeting-members {
+    &,
+    ion-item-divider {
+      background: var(--ion-color-light);
+      --ion-item-background: var(--ion-color-light);
+    }
   }
 }
 
