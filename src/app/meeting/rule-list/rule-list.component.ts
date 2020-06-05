@@ -2,7 +2,7 @@ import { Component, OnDestroy, OnInit, Input } from '@angular/core';
 import * as moment from 'moment';
 import { Subscription } from 'rxjs';
 import { FingerRule, FingerRuleType } from 'src/app/models/finger-rule.model';
-import { SelectedRulesService } from 'src/app/selected-rules.service';
+import { SelectedRulesService } from 'src/app/services/selected-rules.service';
 import { DatabaseService } from 'src/app/services/database.service';
 import { ToastController } from '@ionic/angular';
 import { Router } from '@angular/router';

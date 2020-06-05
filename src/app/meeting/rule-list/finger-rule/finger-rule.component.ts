@@ -1,7 +1,7 @@
 import { AfterViewInit, Component, ElementRef, EventEmitter, Input, OnDestroy, OnInit, Output, ViewChild } from '@angular/core';
 import * as moment from 'moment';
 import { FingerRule } from 'src/app/models/finger-rule.model';
-import { SelectedRulesService } from 'src/app/selected-rules.service';
+import { SelectedRulesService } from 'src/app/services/selected-rules.service';
 import { DatabaseService } from 'src/app/services/database.service';
 import { Subscription, interval } from 'rxjs';
 import { AnalyticsService } from 'src/app/services/analytics.service';

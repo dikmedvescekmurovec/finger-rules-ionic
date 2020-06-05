@@ -1,11 +1,11 @@
 import { Component, OnInit } from '@angular/core';
 import { ActivatedRoute, Router } from '@angular/router';
-import { SelectedRulesService } from '../selected-rules.service';
 import { DatabaseService } from '../services/database.service';
 import { MenuComponent } from './menu/menu.component';
 import { PopoverController } from '@ionic/angular';
 import { AnalyticsService } from '../services/analytics.service';
 import { SEOService } from '../services/seo.service';
+import { SelectedRulesService } from '../services/selected-rules.service';
 
 @Component({
   selector: 'app-meeting',
